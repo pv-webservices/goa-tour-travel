@@ -1,0 +1,9 @@
+.site-header{position:relative;height:auto;background:#0b0f12;padding-block:12px}
+.header-inner{flex-wrap:wrap}
+.main-nav{position:static;transform:none;visibility:visible;width:100%;flex-basis:100%;padding:8px 0 0;background:none;z-index:auto;overflow:visible}
+.nav-list{flex-direction:row;flex-wrap:wrap;gap:4px 8px}
+.nav-item{border:0}
+.nav-item>a{font-family:inherit;font-size:14px;min-height:44px}
+.submenu-toggle,.submenu,.menu-toggle,.filter-bar,.nav-drawer-contact,.carousel-buttons{display:none!important}
+.mobile-only{display:flex}
+.home-hero,.page-hero,.not-found{padding-top:40px}

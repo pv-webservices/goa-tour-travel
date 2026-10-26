@@ -1,0 +1,42 @@
+---
+import Photo from './Photo.astro';
+import Icon from './Icon.astro';
+import type { Vehicle } from '../data/site';
+import { whatsapp } from '../data/site';
+interface Props {
+  vehicle: Vehicle;
+}
+const { vehicle: v } = Astro.props;
+const isGroup = v.category === 'Bus' || v.category === 'Group travel';
+---
+
+<article class="vehicle-card" data-reveal data-category={v.category}>
+  <a href={`/vehicles/${v.slug}/`} class="vehicle-image" tabindex="-1" aria-hidden="true">
+    <Photo name={`fleet-${v.slug}`} alt="" sizes="(max-width: 640px) 80vw, (max-width: 1100px) 40vw, 22vw" />
+    <span class="chip">{v.category}</span>
+    {v.representative && <span class="chip chip-note">Representative image</span>}
+  </a>
+  <div class="vehicle-info">
+    <h3>
+      <a href={`/vehicles/${v.slug}/`}>{v.short}</a>
+    </h3>
+    <p class="vehicle-meta">
+      <Icon name={isGroup ? 'users' : 'car'} size={15} />
+      {isGroup ? 'Group travel' : 'Private travel'} · With driver
+    </p>
+    <div class="vehicle-actions">
+      <a class="text-link" href={`/vehicles/${v.slug}/`} aria-label={`View ${v.name} details`}>
+        View details <Icon name="arrow" size={15} />
+      </a>
+      <a
+        class="icon-button whatsapp"
+        href={whatsapp(`booking a ${v.name}`)}
+        target="_blank"
+        rel="noopener"
+        aria-label={`Enquire about the ${v.name} on WhatsApp`}
+      >
+        <Icon name="whatsapp" size={19} />
+      </a>
+    </div>
+  </div>
+</article>

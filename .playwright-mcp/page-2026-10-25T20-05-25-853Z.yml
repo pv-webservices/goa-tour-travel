@@ -1,0 +1,432 @@
+- generic [active] [ref=f136e1]:
+  - link "Skip to content" [ref=f136e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=f136e3]:
+    - generic [ref=f136e4]:
+      - link "Fatima Tour and Travel home" [ref=f136e5] [cursor=pointer]:
+        - /url: /
+        - img "Fatima Tour and Travels" [ref=f136e6]
+      - navigation "Main navigation" [ref=f136e7]:
+        - link "Home" [ref=f136e8] [cursor=pointer]:
+          - /url: /
+        - link "About Us" [ref=f136e9] [cursor=pointer]:
+          - /url: /about/
+        - link "Our Vehicles" [ref=f136e10] [cursor=pointer]:
+          - /url: /vehicles/
+        - link "Tour Packages" [ref=f136e11] [cursor=pointer]:
+          - /url: /tour-packages/
+        - link "Services" [ref=f136e12] [cursor=pointer]:
+          - /url: /services/
+        - link "Gallery" [ref=f136e13] [cursor=pointer]:
+          - /url: /gallery/
+        - link "Contact Us" [ref=f136e14] [cursor=pointer]:
+          - /url: /contact/
+      - link "+91 80806 43517" [ref=f136e15] [cursor=pointer]:
+        - /url: tel:+918080643517
+  - main [ref=f136e19]:
+    - generic [ref=f136e20]:
+      - img "A golden sunset over the Goa coastline with palm trees" [ref=f136e21]
+      - generic [ref=f136e22]:
+        - generic [ref=f136e23]:
+          - paragraph [ref=f136e24]: Goa, India A journey to remember
+          - heading [level=1] [ref=f136e28]:
+            - text: Explore
+            - emphasis [ref=f136e29]: Goa
+          - heading "Your Journey, Our Priority." [level=2] [ref=f136e30]
+          - paragraph [ref=f136e31]: Comfortable vehicles. Memorable tours. A little more Goa.
+          - generic [ref=f136e32]:
+            - link [ref=f136e33] [cursor=pointer]:
+              - /url: /tour-packages/
+              - generic [ref=f136e37]: TourPackages
+            - link [ref=f136e38] [cursor=pointer]:
+              - /url: /services/taxi-and-rental/
+              - generic [ref=f136e42]: TaxiServices
+            - link [ref=f136e43] [cursor=pointer]:
+              - /url: /services/airport-transfers/
+              - generic [ref=f136e47]: AirportTransfers
+            - link [ref=f136e48] [cursor=pointer]:
+              - /url: /services/outstation-travel/
+              - generic [ref=f136e52]: OutstationTrips
+          - generic [ref=f136e53]:
+            - link "Book Your Ride" [ref=f136e54] [cursor=pointer]:
+              - /url: /contact/
+            - link "Explore Tour Packages" [ref=f136e57] [cursor=pointer]:
+              - /url: /tour-packages/
+        - generic [aria-hidden] [ref=f136e60]:
+          - text: Discover.Unwind.
+          - emphasis [ref=f136e63]: Go places.
+          - generic [ref=f136e64]: ↘
+        - img "Toyota Innova Crysta from the supplied vehicle photographs" [ref=f136e65]
+        - paragraph [ref=f136e68]: Private tours. Shared memories.
+    - generic [ref=f136e71]:
+      - generic [ref=f136e76]:
+        - heading "A ride for every journey" [level=2] [ref=f136e77]
+        - paragraph [ref=f136e78]: Cars, travellers & buses
+      - generic [ref=f136e83]:
+        - heading "Travel with a driver" [level=2] [ref=f136e84]
+        - paragraph [ref=f136e85]: Let the journey be yours
+      - generic [ref=f136e90]:
+        - heading "Goa, your way" [level=2] [ref=f136e91]
+        - paragraph [ref=f136e92]: Private sightseeing enquiries
+      - generic [ref=f136e97]:
+        - heading "Near, far & in between" [level=2] [ref=f136e98]
+        - paragraph [ref=f136e99]: Airport & outstation travel
+    - generic [ref=f136e101]:
+      - generic [ref=f136e102]:
+        - generic [ref=f136e103]:
+          - paragraph [ref=f136e104]: Find your perfect travel companion
+          - heading "Our Fleet" [level=2] [ref=f136e105]
+          - paragraph [ref=f136e106]: From a coastal drive for two to a getaway with the whole group. Find the right ride for your plans.
+        - link "View All Vehicles" [ref=f136e107] [cursor=pointer]:
+          - /url: /vehicles/
+      - generic [ref=f136e110]:
+        - article [ref=f136e111]:
+          - link "Explore Toyota Innova Crysta" [ref=f136e112] [cursor=pointer]:
+            - /url: /vehicles/innova-crysta/
+            - img "Toyota Innova Crysta" [ref=f136e113]
+          - generic [ref=f136e117]:
+            - heading [level=3] [ref=f136e118]:
+              - link "Innova Crysta" [ref=f136e119] [cursor=pointer]:
+                - /url: /vehicles/innova-crysta/
+            - paragraph [ref=f136e120]:
+              - text: MPV
+              - generic [ref=f136e123]: · With driver
+        - article [ref=f136e124]:
+          - link "Explore Toyota Innova Hycross" [ref=f136e125] [cursor=pointer]:
+            - /url: /vehicles/innova-hycross/
+            - img "Toyota Innova Hycross" [ref=f136e126]
+          - generic [ref=f136e130]:
+            - heading [level=3] [ref=f136e131]:
+              - link "Innova Hycross" [ref=f136e132] [cursor=pointer]:
+                - /url: /vehicles/innova-hycross/
+            - paragraph [ref=f136e133]:
+              - text: MPV
+              - generic [ref=f136e136]: · With driver
+        - article [ref=f136e137]:
+          - link "Explore Maruti Suzuki Ertiga" [ref=f136e138] [cursor=pointer]:
+            - /url: /vehicles/ertiga/
+            - img "Maruti Suzuki Ertiga" [ref=f136e139]
+          - generic [ref=f136e143]:
+            - heading [level=3] [ref=f136e144]:
+              - link "Ertiga" [ref=f136e145] [cursor=pointer]:
+                - /url: /vehicles/ertiga/
+            - paragraph [ref=f136e146]:
+              - text: MPV
+              - generic [ref=f136e149]: · With driver
+        - article [ref=f136e150]:
+          - link "Explore Maruti Suzuki Dzire" [ref=f136e151] [cursor=pointer]:
+            - /url: /vehicles/dzire/
+            - img "Maruti Suzuki Dzire" [ref=f136e152]
+          - generic [ref=f136e156]:
+            - heading [level=3] [ref=f136e157]:
+              - link "Dzire" [ref=f136e158] [cursor=pointer]:
+                - /url: /vehicles/dzire/
+            - paragraph [ref=f136e159]:
+              - text: Sedan
+              - generic [ref=f136e162]: · With driver
+        - article [ref=f136e163]:
+          - link "Explore Toyota Glanza" [ref=f136e164] [cursor=pointer]:
+            - /url: /vehicles/glanza/
+            - img "Toyota Glanza" [ref=f136e165]
+          - generic [ref=f136e169]:
+            - heading [level=3] [ref=f136e170]:
+              - link "Glanza" [ref=f136e171] [cursor=pointer]:
+                - /url: /vehicles/glanza/
+            - paragraph [ref=f136e172]:
+              - text: Hatchback
+              - generic [ref=f136e175]: · With driver
+        - article [ref=f136e176]:
+          - link "Explore Tata Winger" [ref=f136e177] [cursor=pointer]:
+            - /url: /vehicles/winger/
+            - img "Tata Winger" [ref=f136e178]
+          - generic [ref=f136e182]:
+            - heading [level=3] [ref=f136e183]:
+              - link "Winger" [ref=f136e184] [cursor=pointer]:
+                - /url: /vehicles/winger/
+            - paragraph [ref=f136e185]:
+              - text: Group travel
+              - generic [ref=f136e188]: · With driver
+        - article [ref=f136e189]:
+          - link "Explore Tempo Traveller" [ref=f136e190] [cursor=pointer]:
+            - /url: /vehicles/tempo-traveller/
+            - img "Tempo Traveller" [ref=f136e191]
+          - generic [ref=f136e195]:
+            - heading [level=3] [ref=f136e196]:
+              - link "Tempo Traveller" [ref=f136e197] [cursor=pointer]:
+                - /url: /vehicles/tempo-traveller/
+            - paragraph [ref=f136e198]:
+              - text: Group travel
+              - generic [ref=f136e201]: · With driver
+        - article [ref=f136e202]:
+          - link "Explore Force Urbania" [ref=f136e203] [cursor=pointer]:
+            - /url: /vehicles/force-urbania/
+            - generic [ref=f136e204]: Photos on request
+          - generic [ref=f136e211]:
+            - heading [level=3] [ref=f136e212]:
+              - link "Force Urbania" [ref=f136e213] [cursor=pointer]:
+                - /url: /vehicles/force-urbania/
+            - paragraph [ref=f136e214]:
+              - text: Group travel
+              - generic [ref=f136e217]: · With driver
+        - article [ref=f136e218]:
+          - link "Explore Toyota Fortuner" [ref=f136e219] [cursor=pointer]:
+            - /url: /vehicles/fortuner/
+            - generic [ref=f136e220]: Photos on request
+          - generic [ref=f136e227]:
+            - heading [level=3] [ref=f136e228]:
+              - link "Fortuner" [ref=f136e229] [cursor=pointer]:
+                - /url: /vehicles/fortuner/
+            - paragraph [ref=f136e230]:
+              - text: SUV
+              - generic [ref=f136e233]: · With driver
+        - article [ref=f136e234]:
+          - link "Explore BharatBenz 40-Seater Bus" [ref=f136e235] [cursor=pointer]:
+            - /url: /vehicles/bharatbenz-bus/
+            - img "BharatBenz 40-Seater Bus" [ref=f136e236]
+          - generic [ref=f136e240]:
+            - heading [level=3] [ref=f136e241]:
+              - link "BharatBenz Bus" [ref=f136e242] [cursor=pointer]:
+                - /url: /vehicles/bharatbenz-bus/
+            - paragraph [ref=f136e243]:
+              - text: Bus
+              - generic [ref=f136e246]: · With driver
+      - paragraph [ref=f136e247]:
+        - text: Your route, your dates, your choice.
+        - link "Ask us about availability and pricing" [ref=f136e248] [cursor=pointer]:
+          - /url: /contact/
+    - generic [ref=f136e252]:
+      - generic [ref=f136e253]:
+        - generic [ref=f136e254]:
+          - paragraph [ref=f136e255]: One Goa. So many ways to explore.
+          - heading "Goa, Beyond the Ordinary" [level=2] [ref=f136e256]
+          - paragraph [ref=f136e257]: Sun-kissed beaches, timeless lanes and places you’ll want to come back to.
+        - link "View All Packages" [ref=f136e258] [cursor=pointer]:
+          - /url: /tour-packages/
+      - generic [ref=f136e261]:
+        - article [ref=f136e262]:
+          - link "Explore South Goa Tour" [ref=f136e263] [cursor=pointer]:
+            - /url: /tour-packages/south-goa/
+            - img "Historic white church architecture in Goa" [ref=f136e264]
+          - generic [ref=f136e265]:
+            - paragraph [ref=f136e266]: Heritage & culture
+            - heading [level=3] [ref=f136e267]:
+              - link "South Goa Tour" [ref=f136e268] [cursor=pointer]:
+                - /url: /tour-packages/south-goa/
+            - list [ref=f136e269]:
+              - listitem [ref=f136e270]: Panjim City
+              - listitem [ref=f136e273]: Miramar Beach
+              - listitem [ref=f136e276]: Dona Paula Beach
+              - listitem [ref=f136e279]: Basilica of Bom Jesus, Old Goa
+              - listitem [ref=f136e282]: Se Cathedral
+            - paragraph [ref=f136e285]: + 5 more stops to explore
+            - generic [ref=f136e286]:
+              - paragraph [ref=f136e287]: Enquire for price
+              - link "View Details" [ref=f136e288] [cursor=pointer]:
+                - /url: /tour-packages/south-goa/
+        - article [ref=f136e291]:
+          - link "Explore North Goa Tour" [ref=f136e292] [cursor=pointer]:
+            - /url: /tour-packages/north-goa/
+            - img "Historic Fort Aguada in North Goa" [ref=f136e293]
+          - generic [ref=f136e294]:
+            - paragraph [ref=f136e295]: Beaches & forts
+            - heading [level=3] [ref=f136e296]:
+              - link "North Goa Tour" [ref=f136e297] [cursor=pointer]:
+                - /url: /tour-packages/north-goa/
+            - list [ref=f136e298]:
+              - listitem [ref=f136e299]: Coco Beach / Dolphin Trip
+              - listitem [ref=f136e302]: Fort Aguada
+              - listitem [ref=f136e305]: Sinquerim Beach / Fort
+              - listitem [ref=f136e308]: Candolim Beach
+              - listitem [ref=f136e311]: Calangute Beach
+            - paragraph [ref=f136e314]: + 4 more stops to explore
+            - generic [ref=f136e315]:
+              - paragraph [ref=f136e316]: Enquire for price
+              - link "View Details" [ref=f136e317] [cursor=pointer]:
+                - /url: /tour-packages/north-goa/
+        - article [ref=f136e320]:
+          - link "Explore South Goa Extreme" [ref=f136e321] [cursor=pointer]:
+            - /url: /tour-packages/south-goa-extreme/
+            - img "Palolem Beach and coconut palms in South Goa" [ref=f136e322]
+          - generic [ref=f136e323]:
+            - paragraph [ref=f136e324]: The scenic escape
+            - heading [level=3] [ref=f136e325]:
+              - link "South Goa Extreme" [ref=f136e326] [cursor=pointer]:
+                - /url: /tour-packages/south-goa-extreme/
+            - list [ref=f136e327]:
+              - listitem [ref=f136e328]: Palolem Beach
+              - listitem [ref=f136e331]: Agonda Beach
+              - listitem [ref=f136e334]: Cola Beach
+              - listitem [ref=f136e337]: Cabo de Rama Beach
+              - listitem [ref=f136e340]: Cabo de Rama Fort
+            - generic [ref=f136e343]:
+              - paragraph [ref=f136e344]: Enquire for price
+              - link "View Details" [ref=f136e345] [cursor=pointer]:
+                - /url: /tour-packages/south-goa-extreme/
+        - article [ref=f136e348]:
+          - link "Explore North Goa Extreme" [ref=f136e349] [cursor=pointer]:
+            - /url: /tour-packages/north-goa-extreme/
+            - img "Sunset at Arambol Beach in North Goa" [ref=f136e350]
+            - generic [ref=f136e351]: ₹3,500
+          - generic [ref=f136e352]:
+            - paragraph [ref=f136e353]: Beyond the familiar
+            - heading [level=3] [ref=f136e354]:
+              - link "North Goa Extreme" [ref=f136e355] [cursor=pointer]:
+                - /url: /tour-packages/north-goa-extreme/
+            - list [ref=f136e356]:
+              - listitem [ref=f136e357]: Morjim Beach
+              - listitem [ref=f136e360]: Mandrem Beach
+              - listitem [ref=f136e363]: Ashwem Beach
+              - listitem [ref=f136e366]: Arambol Beach
+            - generic [ref=f136e369]:
+              - paragraph [ref=f136e370]: Confirm price basis when enquiring
+              - link "View Details" [ref=f136e371] [cursor=pointer]:
+                - /url: /tour-packages/north-goa-extreme/
+      - generic [ref=f136e374]:
+        - article [ref=f136e375]:
+          - generic [ref=f136e376]:
+            - paragraph [ref=f136e377]: Follow a different path
+            - heading "Dudhsagar Waterfall" [level=2] [ref=f136e378]
+            - paragraph [ref=f136e379]: A full-day escape into Goa’s greener side.
+            - link "Explore the Journey" [ref=f136e380] [cursor=pointer]:
+              - /url: /tour-packages/dudhsagar-waterfall/
+        - article [ref=f136e383]:
+          - generic [ref=f136e384]:
+            - paragraph [ref=f136e385]: Travel with meaning
+            - heading "Spiritual Journeys" [level=2] [ref=f136e386]
+            - paragraph [ref=f136e387]: Temple tour enquiries, shaped around your plans.
+            - link "Explore Temple Tours" [ref=f136e388] [cursor=pointer]:
+              - /url: /tour-packages/temple-tours/
+      - generic [ref=f136e391]:
+        - article [ref=f136e392]:
+          - generic [ref=f136e393]:
+            - paragraph [ref=f136e394]: Take the longer road
+            - heading "Travel Beyond Goa" [level=2] [ref=f136e395]
+            - paragraph [ref=f136e396]: Outstation pickup & drop enquiries for Mumbai, Bengaluru, Pune and Hyderabad.
+            - link "Plan an Outstation Trip" [ref=f136e397] [cursor=pointer]:
+              - /url: /services/outstation-travel/
+        - article [ref=f136e400]:
+          - generic [ref=f136e401]:
+            - paragraph [ref=f136e402]: From arrival to adventure
+            - heading "Airport Pickup & Drop" [level=2] [ref=f136e403]
+            - paragraph [ref=f136e404]: Your Goa journey starts with a little planning. Enquire about your transfer.
+            - link "Enquire About Transfers" [ref=f136e405] [cursor=pointer]:
+              - /url: /services/airport-transfers/
+      - article [ref=f136e408]:
+        - generic [ref=f136e409]:
+          - paragraph [ref=f136e410]: Every detail. Every journey.
+          - heading "Corporate & Conference Travel" [level=2] [ref=f136e411]
+          - paragraph [ref=f136e412]: Bring your team together. Transport enquiries for meetings, events and group business travel.
+          - link "Request a Corporate Quote" [ref=f136e413] [cursor=pointer]:
+            - /url: /services/corporate-travel/
+    - generic [ref=f136e417]:
+      - paragraph [ref=f136e418]: Thoughtful travel starts here
+      - heading "Why Travel With Fatima?" [level=2] [ref=f136e419]
+      - generic [ref=f136e420]:
+        - paragraph [ref=f136e425]: Diverse VehicleOptions
+        - paragraph [ref=f136e430]: Individual &Group Travel
+        - paragraph [ref=f136e435]: Goa SightseeingPackages
+        - paragraph [ref=f136e440]: Flexible BookingDurations
+        - paragraph [ref=f136e445]: Corporate TravelOptions
+        - paragraph [ref=f136e450]: OutstationJourneys
+    - generic [ref=f136e452]:
+      - generic [ref=f136e453]:
+        - generic [ref=f136e454]:
+          - paragraph [ref=f136e455]: Less planning. More looking forward.
+          - heading "Your Trip Starts With a Conversation" [level=2] [ref=f136e456]
+        - link "Let’s plan it" [ref=f136e457] [cursor=pointer]:
+          - /url: /contact/
+      - generic [ref=f136e460]:
+        - article [ref=f136e461]:
+          - generic [ref=f136e462]: "01"
+          - generic [ref=f136e463]:
+            - heading "Tell us your plans" [level=3] [ref=f136e464]
+            - paragraph [ref=f136e465]: A day on the coast, an airport pickup or a group escape. Start with where you want to go.
+        - article [ref=f136e466]:
+          - generic [ref=f136e467]: "02"
+          - generic [ref=f136e468]:
+            - heading "Find your ride" [level=3] [ref=f136e469]
+            - paragraph [ref=f136e470]: Share your dates and group size. Discuss your vehicle, route and a tailored quote.
+        - article [ref=f136e471]:
+          - generic [ref=f136e472]: "03"
+          - generic [ref=f136e473]:
+            - heading "Make it your journey" [level=3] [ref=f136e474]
+            - paragraph [ref=f136e475]: Confirm the details with our team, then look forward to your time in Goa.
+    - generic [ref=f136e476]:
+      - img "Goa beach at sunset" [ref=f136e477]
+      - generic [ref=f136e478]:
+        - paragraph [ref=f136e479]: A little planning. A beautiful journey.
+        - heading [level=2] [ref=f136e480]:
+          - text: Ready to Explore
+          - emphasis [ref=f136e481]: Goa?
+        - paragraph [ref=f136e482]: Tell us where you want to go.We’ll help you plan the journey.
+        - link "Let’s Plan Your Trip" [ref=f136e483] [cursor=pointer]:
+          - /url: /contact/
+  - contentinfo [ref=f136e486]:
+    - generic [ref=f136e487]:
+      - generic [ref=f136e488]:
+        - link "Fatima Tour and Travel home" [ref=f136e489] [cursor=pointer]:
+          - /url: /
+          - img "Fatima Tour and Travels" [ref=f136e490]
+        - paragraph [ref=f136e491]: Goa’s coastline. Your favourite people.A journey worth making.
+        - paragraph [ref=f136e492]: Tours, transfers & driver-included travel.
+      - generic [ref=f136e493]:
+        - heading "Explore Fatima" [level=2] [ref=f136e494]
+        - list [ref=f136e495]:
+          - listitem [ref=f136e496]:
+            - link "About Us" [ref=f136e497] [cursor=pointer]:
+              - /url: /about/
+          - listitem [ref=f136e498]:
+            - link "Our Vehicles" [ref=f136e499] [cursor=pointer]:
+              - /url: /vehicles/
+          - listitem [ref=f136e500]:
+            - link "Tour Packages" [ref=f136e501] [cursor=pointer]:
+              - /url: /tour-packages/
+          - listitem [ref=f136e502]:
+            - link "Services" [ref=f136e503] [cursor=pointer]:
+              - /url: /services/
+          - listitem [ref=f136e504]:
+            - link "Gallery" [ref=f136e505] [cursor=pointer]:
+              - /url: /gallery/
+          - listitem [ref=f136e506]:
+            - link "Contact Us" [ref=f136e507] [cursor=pointer]:
+              - /url: /contact/
+          - listitem [ref=f136e508]:
+            - link "FAQs" [ref=f136e509] [cursor=pointer]:
+              - /url: /faq/
+      - generic [ref=f136e510]:
+        - heading "Travel With Us" [level=2] [ref=f136e511]
+        - list [ref=f136e512]:
+          - listitem [ref=f136e513]:
+            - link "Taxi & Car Rentals" [ref=f136e514] [cursor=pointer]:
+              - /url: /services/taxi-and-rental/
+          - listitem [ref=f136e515]:
+            - link "Airport Transfers" [ref=f136e516] [cursor=pointer]:
+              - /url: /services/airport-transfers/
+          - listitem [ref=f136e517]:
+            - link "Outstation Travel" [ref=f136e518] [cursor=pointer]:
+              - /url: /services/outstation-travel/
+          - listitem [ref=f136e519]:
+            - link "Corporate Travel" [ref=f136e520] [cursor=pointer]:
+              - /url: /services/corporate-travel/
+          - listitem [ref=f136e521]:
+            - link "Temple Tours" [ref=f136e522] [cursor=pointer]:
+              - /url: /tour-packages/temple-tours/
+          - listitem [ref=f136e523]:
+            - link "Day Packages" [ref=f136e524] [cursor=pointer]:
+              - /url: /services/day-packages/
+      - generic [ref=f136e525]:
+        - heading "Let’s Talk Travel" [level=2] [ref=f136e526]
+        - link "+91 80806 43517" [ref=f136e527] [cursor=pointer]:
+          - /url: tel:+918080643517
+        - link "vaseem9823@gmail.com" [ref=f136e530] [cursor=pointer]:
+          - /url: mailto:vaseem9823@gmail.com
+        - paragraph [ref=f136e533]: Goa, India
+        - link "Chat with us on WhatsApp" [ref=f136e536] [cursor=pointer]:
+          - /url: https://wa.me/918080643517?text=Hello%20Fatima%20Tour%20and%20Travel%2C%20I%20would%20like%20to%20enquire%20about%20a%20trip%20in%20Goa.%20Please%20share%20availability%20and%20pricing.
+    - generic [ref=f136e539]:
+      - paragraph [ref=f136e540]: © 2026 Fatima Tour and Travel. All rights reserved.
+      - paragraph [ref=f136e541]: Made for the journey.
+      - link "Back to top" [ref=f136e542] [cursor=pointer]:
+        - /url: "#top"
+  - link "Enquire with Fatima Tour and Travel on WhatsApp" [ref=f136e545] [cursor=pointer]:
+    - /url: https://wa.me/918080643517?text=Hello%20Fatima%20Tour%20and%20Travel%2C%20I%20would%20like%20to%20enquire%20about%20a%20trip%20in%20Goa.%20Please%20share%20availability%20and%20pricing.

@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import VehicleCard from '../../components/VehicleCard.astro';
+import Button from '../../components/Button.astro';
+import Icon from '../../components/Icon.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import { vehicles, whatsapp } from '../../data/site';
+const categories = ['All', 'MPV', 'Sedan', 'Hatchback', 'SUV', 'Group travel', 'Bus'];
+const guide = [
+  ['car', '1–4 travellers', 'Hatchback, sedan or SUV for couples, solo travellers and small families.'],
+  ['users', 'Families & small groups', 'MPVs like the Innova Crysta, Hycross and Ertiga for extra room.'],
+  ['bus', 'Larger groups', 'Winger, Tempo Traveller, Urbania or the 40-seater BharatBenz bus.'],
+];
+---
+
+<Layout
+  title="Our Vehicles — Cars, Travellers & Buses in Goa"
+  description="Browse Fatima’s vehicle options in Goa: Innova Crysta, Hycross, Ertiga, Dzire, Glanza, Winger, Tempo Traveller, Urbania, Fortuner and BharatBenz bus enquiries."
+>
+  <PageHero
+    title="A Ride for Every Journey"
+    text="A family holiday. A shared adventure. A journey with your team. Explore your options and find a ride to suit your plans."
+    eyebrow="Our vehicles"
+    image="Toyota Innova Hycross img-8.jpeg"
+    position="center 60%"
+  />
+  <section class="section">
+    <div class="container">
+      <div class="listing-head">
+        <div>
+          <p class="eyebrow">Choose your travel companion</p>
+          <h2>Our Fleet</h2>
+          <p class="section-description">
+            Explore the supplied vehicle photographs and tell us what your journey needs. Availability,
+            seating, luggage space and booking details are confirmed with your quotation.
+          </p>
+        </div>
+        <div class="filter-wrap">
+          <div
+            class="filter-bar"
+            data-filter-group="vehicles"
+            role="group"
+            aria-label="Filter vehicles by category"
+          >
+            {categories.map((category, i) => (
+              <button type="button" data-filter={category} aria-pressed={i === 0}>
+                {category === 'All' ? 'All Vehicles' : category}
+              </button>
+            ))}
+          </div>
+          <p class="filter-status" data-filter-status="vehicles" aria-live="polite">
+            Showing {vehicles.length} vehicles
+          </p>
+        </div>
+      </div>
+      <div class="vehicle-grid" data-filter-items="vehicles">
+        {vehicles.map((vehicle) => (
+          <VehicleCard vehicle={vehicle} />
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section sand-section">
+    <div class="container guide">
+      <div class="guide-intro" data-reveal>
+        <p class="eyebrow">Not sure which one?</p>
+        <h2>Pick by Group Size</h2>
+        <p>
+          Tell us how many people are travelling and how much luggage you have. We’ll suggest a suitable
+          vehicle.
+        </p>
+        <Button href={whatsapp('choosing the right vehicle for my group')}>Help Me Choose</Button>
+      </div>
+      <ul class="guide-list">
+        {guide.map(([icon, title, text]) => (
+          <li data-reveal>
+            <span class="icon-circle">
+              <Icon name={icon} size={22} />
+            </span>
+            <div>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  <FinalCTA />
+</Layout>

@@ -1,0 +1,44 @@
+---
+import Photo from './Photo.astro';
+interface Props {
+  title: string;
+  text: string;
+  image?: string;
+  eyebrow?: string;
+  parent?: string;
+  parentHref?: string;
+  position?: string;
+}
+const {
+  title,
+  text,
+  image = 'goa-coast',
+  eyebrow = 'Make your Goa journey yours',
+  parent,
+  parentHref,
+  position,
+} = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="page-hero-media">
+    <Photo name={image} alt="" eager sizes="100vw" position={position} />
+  </div>
+  <div class="container page-hero-inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      {parent && (
+        <>
+          <a href={parentHref}>{parent}</a>
+          <span aria-hidden="true">/</span>
+        </>
+      )}
+      <span aria-current="page">{title}</span>
+    </nav>
+    <p class="eyebrow light">{eyebrow}</p>
+    <h1>{title}</h1>
+    <p class="hero-description">{text}</p>
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,378 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Photo from '../components/Photo.astro';
+import Icon from '../components/Icon.astro';
+import Button from '../components/Button.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import VehicleCard from '../components/VehicleCard.astro';
+import TourCard from '../components/TourCard.astro';
+import ScenicBanner from '../components/ScenicBanner.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import TripPlanner from '../components/TripPlanner.astro';
+import FAQList from '../components/FAQList.astro';
+import {
+  vehicles,
+  tours,
+  services,
+  destinations,
+  facts,
+  faqs,
+  whatsapp,
+  serviceImageAlt,
+} from '../data/site';
+
+const quickLinks = [
+  ['sun', 'Tour Packages', '/tour-packages/'],
+  ['car', 'Taxi & Rental', '/services/taxi-and-rental/'],
+  ['plane', 'Airport Transfers', '/services/airport-transfers/'],
+  ['route', 'Outstation Trips', '/services/outstation-travel/'],
+];
+const benefits = [
+  ['car', 'Diverse vehicle options', 'Hatchbacks, sedans, MPVs, travellers and a 40-seater bus.'],
+  ['users', 'Individual & group travel', 'Plans for couples, families, friends and organised groups.'],
+  ['sun', 'Goa sightseeing packages', 'North and South Goa routes, beaches, forts and heritage.'],
+  ['clock', 'Flexible booking durations', '8-hour, 12-hour, 24-hour and full-day bookings.'],
+  ['briefcase', 'Corporate travel options', 'Meetings, conferences and business group transport.'],
+  ['route', 'Outstation journeys', 'Pickup and drop to Mumbai, Bengaluru, Pune and Hyderabad.'],
+];
+const steps = [
+  [
+    '01',
+    'Tell us your plans',
+    'A day on the coast, an airport pickup or a group escape. Start with where you want to go.',
+  ],
+  [
+    '02',
+    'Find your ride',
+    'Share your dates and group size. Discuss your vehicle, route and a tailored quote.',
+  ],
+  ['03', 'Make it your journey', 'Confirm the details with our team, then look forward to your time in Goa.'],
+];
+const bento = [
+  'taxi-and-rental',
+  'airport-transfers',
+  'outstation-travel',
+  'corporate-travel',
+  'day-packages',
+  'group-transport',
+].map((slug) => services.find((s) => s.slug === slug)!);
+---
+
+<Layout
+  title="Goa Tours, Taxis & Driver-Included Travel"
+  description="Explore Goa with Fatima Tour and Travel. Browse our vehicles, North and South Goa tour packages, airport transfers and outstation travel. Enquire for a quote."
+>
+  <section class="home-hero">
+    <div class="hero-media">
+      <Photo name="ai-hero-coast-road" alt="" eager sizes="100vw" />
+    </div>
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="hero-location">
+          <Icon name="pin" size={14} /> Goa, India <span aria-hidden="true"></span> Tours · Taxis · Transfers
+        </p>
+        <h1>
+          Explore <em>Goa</em>
+        </h1>
+        <p class="hero-kicker">Your Journey, Our Priority.</p>
+        <p class="hero-lead">
+          Private sightseeing, airport pickups, outstation trips and group travel — with a driver and a
+          vehicle chosen around your plans.
+        </p>
+        <div class="hero-actions">
+          <Button href="/contact/">Book Your Ride</Button>
+          <Button href="/tour-packages/" variant="light">
+            Explore Tour Packages
+          </Button>
+        </div>
+        <ul class="hero-links" aria-label="Popular services">
+          {quickLinks.map(([icon, label, href]) => (
+            <li>
+              <a href={href}>
+                <Icon name={icon} size={18} />
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="hero-stack" aria-hidden="true">
+        <figure class="stack-card stack-main">
+          <Photo name="Toyota Crysta img-1.jpeg" alt="" sizes="(max-width: 1100px) 1px, 26vw" />
+          <figcaption>
+            <span>Innova Crysta</span> With driver
+          </figcaption>
+        </figure>
+        <figure class="stack-card stack-side">
+          <Photo name="fleet-force-urbania" alt="" sizes="(max-width: 1100px) 1px, 18vw" />
+          <figcaption>
+            <span>Force Urbania</span> Group travel
+          </figcaption>
+        </figure>
+        <div class="stack-badge">
+          <strong>{vehicles.length}</strong>
+          <span>
+            vehicle types
+            <br />
+            cars to buses
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="container hero-planner">
+      <TripPlanner />
+    </div>
+  </section>
+
+  <div class="ribbon" aria-label="Places our Goa tours visit">
+    <div class="ribbon-track">
+      {[0, 1].map((copy) => (
+        <ul aria-hidden={copy === 1 ? 'true' : undefined}>
+          {destinations.map((place) => (
+            <li>
+              {place}
+              <span aria-hidden="true">✦</span>
+            </li>
+          ))}
+        </ul>
+      ))}
+    </div>
+  </div>
+
+  <section class="section services-section">
+    <div class="container">
+      <SectionTitle
+        eyebrow="Travel services in Goa"
+        title="Wherever You’re Headed, We’ll Get You There"
+        text="From the moment you land to the last stop of your trip — choose the kind of journey you need."
+        href="/services/"
+        link="All Services"
+      />
+      <div class="bento">
+        {bento.map((s, i) => (
+          <a href={`/services/${s.slug}/`} class:list={['bento-tile', `bento-${i + 1}`]} data-reveal>
+            <Photo
+              name={s.image}
+              alt={serviceImageAlt(s)}
+              sizes={i === 0 ? '(max-width: 760px) 100vw, 50vw' : '(max-width: 760px) 100vw, 30vw'}
+            />
+            <span class="bento-content">
+              <span class="bento-icon">
+                <Icon name={s.icon} size={22} />
+              </span>
+              <span class="bento-label">{s.label}</span>
+              <span class="bento-title">{s.name}</span>
+              <span class="bento-text">{s.description}</span>
+              <span class="bento-arrow">
+                <Icon name="arrow-up-right" size={20} />
+              </span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section fleet-section">
+    <div class="container">
+      <SectionTitle
+        eyebrow="Find your perfect travel companion"
+        title="Our Fleet"
+        text="From a coastal drive for two to a getaway with the whole group. Ask about driver-included travel in any of them."
+        href="/vehicles/"
+        link="View All Vehicles"
+      />
+    </div>
+    <div class="carousel" data-carousel>
+      <div class="carousel-track" data-carousel-track tabindex="0" aria-label="Fleet, scroll horizontally">
+        {vehicles.map((vehicle) => (
+          <VehicleCard vehicle={vehicle} />
+        ))}
+      </div>
+      <div class="container carousel-controls">
+        <p class="carousel-hint">
+          <Icon name="car" size={16} /> Swipe or use the arrows to browse all {vehicles.length} vehicles
+        </p>
+        <div class="carousel-buttons">
+          <button type="button" class="icon-button" data-carousel-prev aria-label="Previous vehicles">
+            <Icon name="chevron-left" size={20} />
+          </button>
+          <button type="button" class="icon-button" data-carousel-next aria-label="Next vehicles">
+            <Icon name="chevron-right" size={20} />
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tours-section">
+    <div class="container">
+      <SectionTitle
+        eyebrow="One Goa. So many ways to explore."
+        title="Tour Packages"
+        text="Sun-kissed beaches, timeless lanes and places you’ll want to come back to. Pick a route and make it yours."
+        href="/tour-packages/"
+        link="View All Packages"
+      />
+      <div class="tour-grid">
+        {tours.slice(0, 4).map((tour) => (
+          <TourCard tour={tour} />
+        ))}
+      </div>
+      <div class="banner-grid">
+        <ScenicBanner
+          image="dudhsagar"
+          title="Dudhsagar Waterfall"
+          text="A full-day escape into Goa’s greener side. Talk to us about the day plan and transport."
+          eyebrow="Full-day package enquiry"
+          href="/tour-packages/dudhsagar-waterfall/"
+          label="Explore the Journey"
+          alt="Dudhsagar waterfall in Goa surrounded by forest"
+        />
+        <ScenicBanner
+          image="ai-temple-architecture"
+          title="Temple Tours"
+          text="Gokarna and Mahadeshwara temple enquiries, shaped around your plans."
+          eyebrow="Spiritual journeys"
+          href="/tour-packages/temple-tours/"
+          label="Explore Temple Tours"
+          alt="Illustration of Goan temple architecture with a lamp tower at sunrise"
+          note="Illustration"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section story-section">
+    <div class="container story-grid">
+      <div class="story-media" data-reveal>
+        <Photo
+          name="ai-chauffeur-family"
+          alt="Illustrative scene of a driver opening the door of a white MPV for a family in Goa"
+          sizes="(max-width: 900px) 100vw, 45vw"
+        />
+        <div class="story-badge">
+          <Icon name="shield" size={22} />
+          <span>
+            <strong>Driver-included</strong> travel across Goa
+          </span>
+        </div>
+      </div>
+      <div class="story-copy">
+        <SectionTitle
+          eyebrow="Less planning. More looking forward."
+          title="Your Trip Starts With a Conversation"
+          text="Share where you want to go, who you’re travelling with and what matters to your journey. We’ll help you match the route, the vehicle and the timing."
+        />
+        <ol class="steps">
+          {steps.map(([n, t, d]) => (
+            <li data-reveal>
+              <span class="step-number">{n}</span>
+              <div>
+                <h3>{t}</h3>
+                <p>{d}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <div class="story-actions">
+          <Button href="/contact/">Tell Us Your Plans</Button>
+          <Button href={whatsapp()} variant="outline">
+            Ask on WhatsApp
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section why-section">
+    <div class="container">
+      <SectionTitle
+        eyebrow="Thoughtful travel starts here"
+        title="Why Travel With Fatima?"
+        text="One team for sightseeing, transfers, long drives and group movement — so your whole trip runs on one plan."
+        center
+        light
+      />
+      <dl class="facts">
+        {facts.map(([value, label, detail]) => (
+          <div class="fact" data-reveal>
+            <dt>{label}</dt>
+            <dd class="fact-value">{value}</dd>
+            <dd class="fact-detail">{detail}</dd>
+          </div>
+        ))}
+      </dl>
+      <ul class="benefits">
+        {benefits.map(([icon, title, text]) => (
+          <li class="benefit" data-reveal>
+            <span class="icon-circle">
+              <Icon name={icon} size={22} />
+            </span>
+            <div>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section video-section">
+    <div class="container video-grid">
+      <div class="video-copy" data-reveal>
+        <p class="eyebrow">See a little more</p>
+        <h2>Step Inside the Winger</h2>
+        <p>
+          Room for the whole group, their luggage and the conversation. Take a look around the Tata Winger
+          before you request your quote.
+        </p>
+        <ul class="check-list">
+          <li>
+            <Icon name="check" size={18} /> Group sightseeing
+          </li>
+          <li>
+            <Icon name="check" size={18} /> Event transport
+          </li>
+          <li>
+            <Icon name="check" size={18} /> Outstation trips
+          </li>
+        </ul>
+        <Button href="/vehicles/winger/" variant="outline">
+          Explore the Winger
+        </Button>
+      </div>
+      <div class="video-frame" data-reveal>
+        <video
+          controls
+          preload="none"
+          poster="/media/fleet-winger-960.webp"
+          aria-label="Client-supplied Tata Winger vehicle video"
+        >
+          <source src="/tata%20winger%20video.mp4" type="video/mp4" />
+          <p>
+            Your browser cannot play this video.{' '}
+            <a href="/tata%20winger%20video.mp4">Download the Winger video</a>.
+          </p>
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq-teaser">
+    <div class="container faq-grid">
+      <div class="faq-intro" data-reveal>
+        <p class="eyebrow">Before you book</p>
+        <h2>Good to Know</h2>
+        <p>Quick answers about bookings, prices and what’s included. Can’t find yours? Just ask.</p>
+        <Button href="/faq/" variant="outline">
+          All FAQs
+        </Button>
+      </div>
+      <FAQList items={[faqs[1], faqs[3], faqs[5], faqs[6]]} />
+    </div>
+  </section>
+
+  <FinalCTA />
+</Layout>

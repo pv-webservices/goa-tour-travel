@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import Icon from '../components/Icon.astro';
+import Button from '../components/Button.astro';
+import PhotoDialog from '../components/PhotoDialog.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { vehicles } from '../data/site';
+import images from '../data/images.json';
+const entries = [
+  ...vehicles
+    .filter((v) => v.images.length)
+    .map((v) => ({ name: `fleet-${v.slug}`, caption: v.name, category: 'Vehicles' })),
+  { name: 'aguada', caption: 'Fort Aguada · North Goa', category: 'Goa' },
+  { name: 'arambol', caption: 'Arambol Beach · North Goa', category: 'Goa' },
+  { name: 'palolem', caption: 'Palolem Beach · South Goa', category: 'Goa' },
+  { name: 'south-goa', caption: 'Church architecture · Goa', category: 'Goa' },
+  { name: 'goa-coast', caption: 'Kakolem Beach · Goa', category: 'Goa' },
+  { name: 'goa-beach', caption: 'Quepem coastline · South Goa', category: 'Goa' },
+  { name: 'goa-sunset', caption: 'Golden hour · Goa', category: 'Goa' },
+  { name: 'dudhsagar', caption: 'Dudhsagar Waterfall · Goa', category: 'Waterfall' },
+  { name: 'Toyota Innova Hycross img-5.jpeg', caption: 'Innova Hycross · Interior', category: 'Interiors' },
+  { name: 'Toyota Innova Hycross img-7.jpeg', caption: 'Innova Hycross · Cabin', category: 'Interiors' },
+  { name: 'swift dezire img-2.jpeg', caption: 'Dzire · Rear seats', category: 'Interiors' },
+  { name: 'Maruti Ertiga img-6.jpeg', caption: 'Ertiga · Interior', category: 'Interiors' },
+  { name: 'urbania img-6.jpeg', caption: 'Force Urbania · Cabin', category: 'Interiors' },
+  { name: 'tata winger img-5.jpeg', caption: 'Tata Winger · Interior', category: 'Interiors' },
+  { name: 'tata winger img-6.jpeg', caption: 'Tata Winger · Cabin', category: 'Interiors' },
+  { name: 'Bharat benz img-4.jpeg', caption: 'BharatBenz Bus · Interior', category: 'Interiors' },
+  { name: 'Bharat benz img-7.jpeg', caption: 'BharatBenz Bus · Seating', category: 'Interiors' },
+];
+---
+
+<Layout
+  title="Photo & Video Gallery — Vehicles and Goa"
+  description="Explore Fatima’s supplied vehicle photographs, interiors and Winger video alongside Goa destination photography, from Fort Aguada to Palolem and Dudhsagar."
+>
+  <PageHero
+    title="A Glimpse of the Journey"
+    text="The rides, the coastline and the places that make you want to go. Explore our vehicle photos and Goa destination gallery."
+    eyebrow="Photo & video gallery"
+    image="arambol"
+  />
+  <section class="section">
+    <div class="container">
+      <div class="listing-head">
+        <div>
+          <p class="eyebrow">Take a closer look</p>
+          <h2>Picture Your Next Trip</h2>
+          <p class="section-description">
+            Vehicle photographs and video are supplied by the client. Destination photographs show Goa’s
+            scenery and landmarks; they do not depict completed customer trips.
+          </p>
+        </div>
+        <div class="filter-wrap">
+          <div
+            class="filter-bar"
+            role="group"
+            aria-label="Filter gallery photographs"
+            data-filter-group="gallery"
+          >
+            {['All', 'Vehicles', 'Interiors', 'Goa', 'Waterfall'].map((category, i) => (
+              <button type="button" data-filter={category} aria-pressed={i === 0}>
+                {category === 'All' ? 'All Photos' : category}
+              </button>
+            ))}
+          </div>
+          <p class="filter-status" data-filter-status="gallery" aria-live="polite">
+            Showing {entries.length} photos
+          </p>
+        </div>
+      </div>
+      <div class="gallery-grid" data-filter-items="gallery">
+        {entries.map((e) => (
+          <button
+            type="button"
+            class="gallery-item"
+            data-category={e.category}
+            data-photo={images[e.name as keyof typeof images].src}
+            data-caption={e.caption}
+            aria-label={`View ${e.caption}`}
+          >
+            <Photo
+              name={e.name}
+              alt={e.caption}
+              sizes="(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 25vw"
+            />
+            <span class="gallery-caption">
+              {e.caption}
+              <Icon name="plus" size={18} />
+            </span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section sand-section">
+    <div class="container video-grid">
+      <div class="video-copy" data-reveal>
+        <p class="eyebrow">See a little more</p>
+        <h2>Step Inside the Winger</h2>
+        <p>
+          Explore the client-supplied Winger video. Ask our team about the specific vehicle and interior
+          arrangements for your dates.
+        </p>
+        <Button href="/vehicles/winger/" variant="outline">
+          Explore the Winger
+        </Button>
+      </div>
+      <div class="video-frame" data-reveal>
+        <video
+          controls
+          preload="none"
+          poster="/media/fleet-winger-960.webp"
+          aria-label="Client-supplied Tata Winger vehicle video"
+        >
+          <source src="/tata%20winger%20video.mp4" type="video/mp4" />
+          <p>
+            <a href="/tata%20winger%20video.mp4">Download the Winger video</a>
+          </p>
+        </video>
+      </div>
+    </div>
+  </section>
+  <PhotoDialog />
+  <FinalCTA />
+</Layout>

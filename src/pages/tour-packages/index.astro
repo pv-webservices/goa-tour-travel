@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import TourCard from '../../components/TourCard.astro';
+import ScenicBanner from '../../components/ScenicBanner.astro';
+import Icon from '../../components/Icon.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import { tours } from '../../data/site';
+const included = [
+  ['route', 'Your route, your pace', 'Stops and their order are agreed with you when booking.'],
+  ['car', 'A vehicle for your group', 'From a hatchback for two to a bus for forty.'],
+  ['users', 'Private, not shared', 'Sightseeing planned around your own group.'],
+];
+---
+
+<Layout
+  title="Goa Tour Packages — North, South & Beyond"
+  description="Explore North Goa, South Goa, beach escapes, Dudhsagar Waterfall and temple tour enquiries with Fatima Tour and Travel. Choose a journey and request a quote."
+>
+  <PageHero
+    title="Find Your Kind of Goa"
+    text="Follow the coast, wander through history, or take the road less travelled. There’s a Goa journey waiting for you."
+    eyebrow="Our tour packages"
+    image="palolem"
+  />
+  <section class="section">
+    <div class="container">
+      <SectionTitle
+        eyebrow="Beautiful places. Your own pace."
+        title="Explore Our Goa Tour Packages"
+        text="Start with the places you’d love to see. Discuss your route, vehicle and preferred stops with our team."
+      />
+      <div class="tour-grid">
+        {tours.slice(0, 4).map((tour) => (
+          <TourCard tour={tour} />
+        ))}
+      </div>
+      <div class="banner-grid">
+        {tours.slice(4).map((t) => (
+          <ScenicBanner
+            title={t.name}
+            image={t.image}
+            text={t.description}
+            eyebrow={t.label}
+            href={`/tour-packages/${t.slug}/`}
+            label="Explore the Journey"
+            alt={t.alt}
+            note={t.image.startsWith('ai-') ? 'Illustration' : undefined}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section sand-section">
+    <div class="container">
+      <SectionTitle eyebrow="How our tours work" title="Sightseeing Shaped Around You" center />
+      <ul class="feature-row">
+        {included.map(([icon, title, text]) => (
+          <li data-reveal>
+            <span class="icon-circle">
+              <Icon name={icon} size={22} />
+            </span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="notice center-notice">
+        Final routes, timing, activities and inclusions are agreed before booking. Ask us for a quotation
+        based on your group, dates and preferred vehicle.
+      </p>
+    </div>
+  </section>
+  <FinalCTA />
+</Layout>

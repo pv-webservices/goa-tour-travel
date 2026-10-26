@@ -1,0 +1,135 @@
+---
+import Icon from './Icon.astro';
+import { business, serviceOptions, vehicles } from '../data/site';
+---
+
+<form class="contact-form" id="enquiry-form" data-whatsapp={business.whatsapp} data-business={business.name}>
+  <div class="form-head">
+    <p class="eyebrow">Let’s make a plan</p>
+    <h2>Tell Us About Your Trip</h2>
+    <p>
+      Share a few details and we’ll prepare a WhatsApp message for you. Fields marked “Optional” can be
+      skipped.
+    </p>
+  </div>
+  <div class="form-grid">
+    <label class="field">
+      <span class="field-label">Full name</span>
+      <input name="name" autocomplete="name" required maxlength="100" placeholder="Your name" />
+    </label>
+    <label class="field">
+      <span class="field-label">Mobile number</span>
+      <input
+        name="phone"
+        type="tel"
+        autocomplete="tel"
+        required
+        pattern="[+0-9 \(\)\-]{7,20}"
+        title="Enter a mobile number using 7 to 20 characters: digits, spaces, +, brackets or hyphens."
+        maxlength="20"
+        placeholder="Your contact number"
+      />
+    </label>
+    <label class="field">
+      <span class="field-label">
+        Email <span class="optional">Optional</span>
+      </span>
+      <input name="email" type="email" autocomplete="email" maxlength="150" placeholder="you@example.com" />
+    </label>
+    <label class="field">
+      <span class="field-label">Interested service</span>
+      <select name="service" class="select" required>
+        <option value="">Choose a service</option>
+        {serviceOptions.map((option) => (
+          <option>{option}</option>
+        ))}
+      </select>
+    </label>
+    <label class="field">
+      <span class="field-label">
+        Preferred vehicle <span class="optional">Optional</span>
+      </span>
+      <select name="vehicle" class="select">
+        <option value="">Help me choose</option>
+        {vehicles.map((v) => (
+          <option>{v.name}</option>
+        ))}
+      </select>
+    </label>
+    <label class="field">
+      <span class="field-label">
+        Travel date <span class="optional">Optional</span>
+      </span>
+      <input name="date" type="date" data-min-today />
+    </label>
+    <label class="field">
+      <span class="field-label">Pickup location</span>
+      <input
+        name="pickup"
+        required
+        maxlength="200"
+        autocomplete="off"
+        placeholder="Hotel, airport or pickup area"
+      />
+    </label>
+    <label class="field">
+      <span class="field-label">
+        Drop location <span class="optional">Optional</span>
+      </span>
+      <input name="drop" maxlength="200" autocomplete="off" placeholder="Your destination" />
+    </label>
+    <label class="field">
+      <span class="field-label">
+        Number of passengers <span class="optional">Optional</span>
+      </span>
+      <input name="passengers" type="number" min="1" max="500" step="1" placeholder="Your group size" />
+    </label>
+    <label class="field wide">
+      <span class="field-label">Message</span>
+      <textarea
+        name="message"
+        required
+        maxlength="1500"
+        rows="4"
+        placeholder="Preferred tour, travel duration or anything else we should know"
+      ></textarea>
+    </label>
+  </div>
+  <div class="form-actions">
+    <button type="submit" class="button">
+      <span class="button-label">Prepare WhatsApp Enquiry</span>
+      <span class="button-icon">
+        <Icon name="arrow" size={17} />
+      </span>
+    </button>
+    <p class="form-note">
+      You’ll review the message before sending it from WhatsApp. This form does not send anything or confirm a
+      booking.
+    </p>
+  </div>
+  <noscript>
+    <p class="notice">
+      To use the enquiry form, enable JavaScript. You can also <a href={`tel:${business.phone}`}>call us</a>{' '}
+      or email <a href={`mailto:${business.email}`}>{business.email}</a>.
+    </p>
+  </noscript>
+  <section
+    id="enquiry-preview"
+    class="enquiry-preview"
+    tabindex="-1"
+    hidden
+    aria-labelledby="preview-heading"
+  >
+    <h3 id="preview-heading">
+      <Icon name="check" size={20} /> Your enquiry is ready to review
+    </h3>
+    <p>Check the details below, then open WhatsApp to send your message. Nothing has been sent yet.</p>
+    <pre></pre>
+    <a class="button whatsapp" href={`https://wa.me/${business.whatsapp}`} target="_blank" rel="noopener">
+      <span class="button-label">Open WhatsApp to Send</span>
+      <span class="button-icon">
+        <Icon name="whatsapp" size={18} />
+      </span>
+    </a>
+  </section>
+</form>

@@ -1,0 +1,29 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  href: string;
+  /** '' (gold) | 'outline' | 'dark' | 'light' | 'whatsapp' */
+  variant?: string;
+  icon?: string;
+  class?: string;
+  label?: string;
+}
+const { href, variant = '', icon, class: className = '', label } = Astro.props;
+const isWhatsApp = href.startsWith('https://wa.me/');
+const iconName = icon || (isWhatsApp ? 'whatsapp' : 'arrow');
+---
+
+<a
+  href={href}
+  class:list={['button', variant, className]}
+  aria-label={label}
+  target={isWhatsApp ? '_blank' : undefined}
+  rel={isWhatsApp ? 'noopener' : undefined}
+>
+  <span class="button-label">
+    <slot />
+  </span>
+  <span class="button-icon">
+    <Icon name={iconName} size={17} />
+  </span>
+</a>

@@ -1,0 +1,52 @@
+---
+import Photo from './Photo.astro';
+import Icon from './Icon.astro';
+import type { Tour } from '../data/site';
+import { whatsapp } from '../data/site';
+interface Props {
+  tour: Tour;
+}
+const { tour: t } = Astro.props;
+---
+
+<article class="tour-card" data-reveal>
+  <a href={`/tour-packages/${t.slug}/`} class="tour-image" tabindex="-1" aria-hidden="true">
+    <Photo name={t.image} alt="" sizes="(max-width: 640px) 90vw, (max-width: 1100px) 45vw, 24vw" />
+    <span class="chip">{t.label}</span>
+    {t.price && <span class="price-tag">{t.price}</span>}
+  </a>
+  <div class="tour-info">
+    <h3>
+      <a href={`/tour-packages/${t.slug}/`}>{t.name}</a>
+    </h3>
+    <ul class="stop-list">
+      {t.stops.slice(0, 5).map((stop) => (
+        <li>
+          <Icon name="pin" size={14} />
+          {stop}
+        </li>
+      ))}
+    </ul>
+    {t.stops.length > 5 && <p class="more-stops">+ {t.stops.length - 5} more stops</p>}
+    <div class="tour-bottom">
+      <p class="price-note">{t.price ? 'Confirm price basis when enquiring' : 'Price on enquiry'}</p>
+      <div class="tour-actions">
+        <a class="button small" href={`/tour-packages/${t.slug}/`} aria-label={`View ${t.name} details`}>
+          <span class="button-label">View Details</span>
+          <span class="button-icon">
+            <Icon name="arrow" size={16} />
+          </span>
+        </a>
+        <a
+          class="icon-button whatsapp"
+          href={whatsapp(`the ${t.name} package`)}
+          target="_blank"
+          rel="noopener"
+          aria-label={`Enquire about ${t.name} on WhatsApp`}
+        >
+          <Icon name="whatsapp" size={19} />
+        </a>
+      </div>
+    </div>
+  </div>
+</article>

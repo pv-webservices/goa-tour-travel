@@ -1,0 +1,191 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Photo from '../../components/Photo.astro';
+import Icon from '../../components/Icon.astro';
+import Button from '../../components/Button.astro';
+import VehicleCard from '../../components/VehicleCard.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import PhotoDialog from '../../components/PhotoDialog.astro';
+import { vehicles, whatsapp, business } from '../../data/site';
+import images from '../../data/images.json';
+export function getStaticPaths() {
+  return vehicles.map((vehicle) => ({ params: { slug: vehicle.slug }, props: { vehicle } }));
+}
+const { vehicle: v } = Astro.props;
+const others = vehicles.filter((other) => other.slug !== v.slug);
+---
+
+<Layout
+  title={`${v.name} Booking in Goa`}
+  description={`Enquire about ${v.name} with a driver in Goa. Explore ${v.short} travel options, photos and request a quote for your dates and route.`}
+  image={images[`fleet-${v.slug}` as keyof typeof images].src}
+>
+  <PageHero
+    title={v.name}
+    text={v.description}
+    image={v.representative ? 'goa-coast' : `fleet-${v.slug}`}
+    eyebrow={`${v.category} · Driver-included enquiries`}
+    parent="Our Vehicles"
+    parentHref="/vehicles/"
+  />
+  <section class="section">
+    <div class="container detail-grid">
+      <div class="detail-main">
+        <div class="detail-gallery" data-gallery>
+          <figure class="detail-photo" data-gallery-main>
+            <Photo
+              name={`fleet-${v.slug}`}
+              alt={v.representative ? `Representative image of a white seven-seater SUV` : v.name}
+              sizes="(max-width: 1000px) 100vw, 60vw"
+            />
+            {v.representative && (
+              <figcaption class="photo-note">
+                Representative image, not the actual vehicle. Ask our team for current photographs.
+              </figcaption>
+            )}
+          </figure>
+          {v.images.length > 0 && (
+            <div class="photo-thumbs">
+              {v.images.map((file, i) => (
+                <button
+                  type="button"
+                  data-photo={images[file as keyof typeof images].src}
+                  data-caption={`${v.name} · Client-supplied photograph ${i + 1}`}
+                  aria-label={`View ${v.name} photograph ${i + 1}`}
+                >
+                  <Photo
+                    name={file}
+                    alt={`${v.name} photograph ${i + 1}`}
+                    sizes="(max-width: 640px) 25vw, 12vw"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
+          {v.images.length > 0 && (
+            <p class="fineprint">
+              {v.images.length} client-supplied photographs — select one to enlarge. Confirm the specific
+              vehicle for your booking.
+            </p>
+          )}
+        </div>
+
+        <div class="detail-body">
+          <p class="eyebrow">Make the journey yours</p>
+          <h2>Travel in the {v.short}</h2>
+          <p class="lead">{v.description}</p>
+          <h3>Ideal for</h3>
+          <ul class="use-list">
+            {v.uses.map((use) => (
+              <li>
+                <Icon name="check" size={17} />
+                {use}
+              </li>
+            ))}
+          </ul>
+          <div class="notice">
+            Share your passenger count and luggage needs. Seating, variant, amenities, duration, inclusions
+            and availability are confirmed before booking.
+          </div>
+          {v.representative && (
+            <Button href={whatsapp(`${v.name}, including current photographs`)} variant="outline">
+              Request Current Photographs
+            </Button>
+          )}
+          {v.slug === 'winger' && (
+            <>
+              <h2 class="video-title">A Closer Look at the Winger</h2>
+              <div class="video-frame">
+                <video
+                  controls
+                  preload="none"
+                  poster="/media/fleet-winger-960.webp"
+                  aria-label="Client-supplied Tata Winger vehicle video"
+                >
+                  <source src="/tata%20winger%20video.mp4" type="video/mp4" />
+                  <p>
+                    Your browser cannot play this video.{' '}
+                    <a href="/tata%20winger%20video.mp4">Download the Winger video</a>.
+                  </p>
+                </video>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+      <aside class="quote-card">
+        <p class="eyebrow">Your next journey</p>
+        <h2>Enquire About the {v.short}</h2>
+        <p>Tell us your travel dates, route and group size. We’ll discuss availability and a quote.</p>
+        <ul class="quote-facts">
+          <li>
+            <Icon name="shield" size={18} /> Driver-included options
+          </li>
+          <li>
+            <Icon name="route" size={18} /> Local, airport & outstation
+          </li>
+          <li>
+            <Icon name="clock" size={18} /> Price on enquiry
+          </li>
+        </ul>
+        <div class="quote-actions">
+          <Button href={whatsapp(`booking a ${v.name}`)} variant="whatsapp">
+            Enquire on WhatsApp
+          </Button>
+          <Button href={`/contact/?vehicle=${encodeURIComponent(v.name)}`} variant="outline">
+            Share Your Trip Details
+          </Button>
+        </div>
+        <a class="quote-phone" href={`tel:${business.phone}`}>
+          <span class="icon-circle">
+            <Icon name="phone" size={18} />
+          </span>
+          <span>
+            <small>Prefer to talk?</small>
+            {business.displayPhone}
+          </span>
+        </a>
+        <p class="fineprint">
+          A quote enquiry does not reserve a vehicle. Confirm all arrangements with our team.
+        </p>
+      </aside>
+    </div>
+  </section>
+  <section class="section sand-section">
+    <div class="container">
+      <SectionTitle
+        eyebrow="More ways to travel"
+        title="Explore Other Vehicles"
+        href="/vehicles/"
+        link="View All Vehicles"
+      />
+    </div>
+    <div class="carousel" data-carousel>
+      <div
+        class="carousel-track"
+        data-carousel-track
+        tabindex="0"
+        aria-label="Other vehicles, scroll horizontally"
+      >
+        {others.map((vehicle) => (
+          <VehicleCard vehicle={vehicle} />
+        ))}
+      </div>
+      <div class="container carousel-controls">
+        <p class="carousel-hint">
+          <Icon name="car" size={16} /> Swipe or use the arrows
+        </p>
+        <div class="carousel-buttons">
+          <button type="button" class="icon-button" data-carousel-prev aria-label="Previous vehicles">
+            <Icon name="chevron-left" size={20} />
+          </button>
+          <button type="button" class="icon-button" data-carousel-next aria-label="Next vehicles">
+            <Icon name="chevron-right" size={20} />
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <PhotoDialog />
+</Layout>

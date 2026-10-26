@@ -1,0 +1,51 @@
+{
+  "ai-fortuner-representative": {
+    "model": "gpt-image-2.5-flare",
+    "quality": "medium",
+    "size": "1024x1024",
+    "placement": "Toyota Fortuner card and detail page (representative image until client photos are supplied)",
+    "generatedAt": "2026-10-26T08:06:02.820Z"
+  },
+  "ai-temple-architecture": {
+    "model": "gpt-image-2.5-flare",
+    "quality": "high",
+    "size": "1536x1024",
+    "placement": "Temple Tours card, banner and detail page (illustrative, not a specific temple)",
+    "generatedAt": "2026-10-26T08:06:26.749Z"
+  },
+  "ai-outstation-highway": {
+    "model": "gpt-image-2.5-flare",
+    "quality": "high",
+    "size": "1536x1024",
+    "placement": "Outstation Travel banner and detail page",
+    "generatedAt": "2026-10-26T08:06:28.051Z"
+  },
+  "ai-hero-coast-road": {
+    "model": "gpt-image-2.5-sunburst",
+    "quality": "high",
+    "size": "1536x1024",
+    "placement": "Homepage hero background",
+    "generatedAt": "2026-10-26T08:06:43.889Z"
+  },
+  "ai-corporate-travel": {
+    "model": "gpt-image-2.5-sunburst",
+    "quality": "high",
+    "size": "1536x1024",
+    "placement": "Corporate & Conference Travel banner and detail page",
+    "generatedAt": "2026-10-26T08:06:44.938Z"
+  },
+  "ai-chauffeur-family": {
+    "model": "gpt-image-2.5-sunburst",
+    "quality": "high",
+    "size": "1024x1536",
+    "placement": "About page story section and homepage “travel with a driver” panel",
+    "generatedAt": "2026-10-26T08:06:45.342Z"
+  },
+  "ai-airport-transfer": {
+    "model": "gpt-image-2.5-sunburst",
+    "quality": "high",
+    "size": "1536x1024",
+    "placement": "Airport Pickup & Drop service banner and detail page",
+    "generatedAt": "2026-10-26T08:06:47.348Z"
+  }
+}

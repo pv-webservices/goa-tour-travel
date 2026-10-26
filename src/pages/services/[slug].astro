@@ -1,0 +1,135 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Photo from '../../components/Photo.astro';
+import Icon from '../../components/Icon.astro';
+import Button from '../../components/Button.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import VehicleCard from '../../components/VehicleCard.astro';
+import FAQList from '../../components/FAQList.astro';
+import { services, vehicles, whatsapp, business, faqs, serviceImageAlt } from '../../data/site';
+import images from '../../data/images.json';
+export function getStaticPaths() {
+  return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
+}
+const { service: s } = Astro.props;
+const serviceFAQ =
+  s.slug === 'airport-transfers'
+    ? [faqs[6], faqs[5]]
+    : s.slug === 'outstation-travel'
+      ? [faqs[7], faqs[5]]
+      : s.slug === 'day-packages'
+        ? [faqs[8], faqs[5]]
+        : [faqs[1], faqs[3]];
+const suggested =
+  s.slug === 'group-transport' || s.slug === 'corporate-travel'
+    ? vehicles.filter((v) => v.category === 'Group travel' || v.category === 'Bus')
+    : vehicles.filter((v) => v.category !== 'Bus');
+---
+
+<Layout
+  title={`${s.name} in Goa`}
+  description={`${s.description} Request a ${s.name.toLowerCase()} quote from Fatima Tour and Travel with your route, dates and group requirements.`}
+  image={images[s.image as keyof typeof images].src}
+>
+  <PageHero
+    title={s.name}
+    text={s.description}
+    image={s.image}
+    eyebrow={s.label}
+    parent="Services"
+    parentHref="/services/"
+  />
+  <section class="section">
+    <div class="container detail-grid">
+      <div class="detail-main">
+        <figure class="detail-photo">
+          <Photo name={s.image} alt={serviceImageAlt(s)} sizes="(max-width: 1000px) 100vw, 60vw" />
+          {s.kind === 'scene' && <figcaption class="photo-note">Illustrative scene.</figcaption>}
+        </figure>
+        <div class="detail-body">
+          <p class="eyebrow">What’s on offer</p>
+          <h2>Travel That Fits Your Plans</h2>
+          <p class="lead">{s.description}</p>
+          <ul class="detail-tiles">
+            {s.details.map((detail) => (
+              <li data-reveal>
+                <Icon name="check" size={18} />
+                {detail}
+              </li>
+            ))}
+          </ul>
+          <h2>Let’s Plan the Details</h2>
+          <p>{s.planning}</p>
+          <div class="notice">
+            Vehicle availability, the final route, price, inclusions and any additional charges are confirmed
+            with your quote. An enquiry does not confirm a booking.
+          </div>
+          <h2>A Few Useful Answers</h2>
+          <FAQList items={serviceFAQ} />
+        </div>
+      </div>
+      <aside class="quote-card">
+        <span class="icon-circle quote-icon">
+          <Icon name={s.icon} size={24} />
+        </span>
+        <p class="eyebrow">Start a conversation</p>
+        <h2>Where Can We Take You?</h2>
+        <p>Share your dates and travel requirements for a tailored quote.</p>
+        <div class="quote-actions">
+          <Button href={whatsapp(s.prompt)} variant="whatsapp">
+            Enquire on WhatsApp
+          </Button>
+          <Button href={`/contact/?service=${encodeURIComponent(s.name)}`} variant="outline">
+            Share Your Trip Details
+          </Button>
+        </div>
+        <a class="quote-phone" href={`tel:${business.phone}`}>
+          <span class="icon-circle">
+            <Icon name="phone" size={18} />
+          </span>
+          <span>
+            <small>Prefer to talk?</small>
+            {business.displayPhone}
+          </span>
+        </a>
+        <p class="fineprint">Have a specific vehicle in mind? Mention it when you get in touch.</p>
+      </aside>
+    </div>
+  </section>
+  <section class="section sand-section">
+    <div class="container">
+      <SectionTitle
+        title="Find Your Travel Companion"
+        eyebrow="A choice of vehicles"
+        href="/vehicles/"
+        link="View All Vehicles"
+      />
+    </div>
+    <div class="carousel" data-carousel>
+      <div
+        class="carousel-track"
+        data-carousel-track
+        tabindex="0"
+        aria-label="Suggested vehicles, scroll horizontally"
+      >
+        {suggested.map((vehicle) => (
+          <VehicleCard vehicle={vehicle} />
+        ))}
+      </div>
+      <div class="container carousel-controls">
+        <p class="carousel-hint">
+          <Icon name="car" size={16} /> Swipe or use the arrows
+        </p>
+        <div class="carousel-buttons">
+          <button type="button" class="icon-button" data-carousel-prev aria-label="Previous vehicles">
+            <Icon name="chevron-left" size={20} />
+          </button>
+          <button type="button" class="icon-button" data-carousel-next aria-label="Next vehicles">
+            <Icon name="chevron-right" size={20} />
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

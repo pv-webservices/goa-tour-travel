@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import Photo from '../components/Photo.astro';
+---
+
+<Layout
+  title="Page Not Found"
+  description="This route has taken a detour. Return to Fatima Tour and Travel to explore Goa tours and vehicle enquiries."
+  noindex
+>
+  <section class="not-found">
+    <Photo name="ai-hero-coast-road" alt="" eager sizes="100vw" />
+    <div class="container">
+      <p class="eyebrow light">404 · A little detour</p>
+      <h1>
+        Let’s Get You Back on the <em>Scenic Route.</em>
+      </h1>
+      <p>We couldn’t find that page. There’s plenty more Goa to explore.</p>
+      <div class="hero-actions">
+        <Button href="/">Back to Home</Button>
+        <Button href="/tour-packages/" variant="light">
+          Explore Our Tours
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>

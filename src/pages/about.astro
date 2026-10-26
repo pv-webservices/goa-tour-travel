@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Photo from '../components/Photo.astro';
+import Icon from '../components/Icon.astro';
+import Button from '../components/Button.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import VehicleCard from '../components/VehicleCard.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { business, vehicles, facts } from '../data/site';
+const pillars = [
+  [
+    'sun',
+    'Explore Goa',
+    'Sightseeing enquiries across North and South Goa, with beach, heritage and temple stops.',
+  ],
+  [
+    'car',
+    'Travel With a Driver',
+    'Discuss a car, traveller or bus for local travel, airport transfers and longer journeys.',
+  ],
+  ['users', 'Bring Your People', 'Travel options for individuals, families, groups and corporate events.'],
+];
+---
+
+<Layout
+  title="About Us — Your Goa Travel Companion"
+  description="Get to know Fatima Tour and Travel in Goa. Explore our approach to private sightseeing, driver-included travel, airport transfers and group journeys."
+>
+  <PageHero
+    title="Goa Is Better When You Enjoy the Journey"
+    text="A place to discover. People to share it with. Travel plans that feel like yours."
+    eyebrow="About Fatima"
+    image="ai-hero-coast-road"
+  />
+  <section class="section">
+    <div class="container split-section">
+      <div class="about-collage" data-reveal>
+        <Photo
+          name="ai-chauffeur-family"
+          alt="Illustrative scene of a driver welcoming a family to a white MPV in Goa"
+          sizes="(max-width: 900px) 70vw, 30vw"
+        />
+        <Photo
+          name="Toyota Crysta img-3.jpeg"
+          alt="Client-supplied Toyota Innova Crysta photograph"
+          sizes="(max-width: 900px) 50vw, 22vw"
+        />
+        <div class="collage-badge">
+          <strong>{vehicles.length}</strong>
+          <span>vehicle types, from hatchbacks to a 40-seater bus</span>
+        </div>
+      </div>
+      <div class="split-copy" data-reveal>
+        <p class="eyebrow">Your journey, our priority</p>
+        <h2>A Little More Goa. A Journey That’s Yours.</h2>
+        <p class="lead">
+          {business.name} brings together Goa tour enquiries and driver-included transportation for
+          individuals, families, groups and business travellers.
+        </p>
+        <p>
+          Whether you’re planning your first airport pickup, a day along the coast or a group trip beyond Goa,
+          start with a conversation. Share where you want to go, who you’re travelling with and what matters
+          to your journey.
+        </p>
+        <div class="hero-actions">
+          <Button href="/contact/">Tell Us Your Plans</Button>
+          <Button href="/vehicles/" variant="outline">
+            Meet the Fleet
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="about-band">
+    <div class="container about-band-inner">
+      <div data-reveal>
+        <p class="eyebrow light">From arrival to adventure</p>
+        <h2>More Ways to See Goa.</h2>
+      </div>
+      <p data-reveal>
+        North Goa beach stops. South Goa heritage. Private day bookings. Family outings and corporate
+        journeys. Explore the possibilities, then discuss a route and vehicle with our team.
+      </p>
+    </div>
+    <div class="container">
+      <dl class="facts">
+        {facts.map(([value, label, detail]) => (
+          <div class="fact" data-reveal>
+            <dt>{label}</dt>
+            <dd class="fact-value">{value}</dd>
+            <dd class="fact-detail">{detail}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <SectionTitle
+        eyebrow="Thoughtful plans, shared journeys"
+        title="What Your Journey Can Look Like"
+        center
+      />
+      <ul class="feature-row">
+        {pillars.map(([icon, title, text]) => (
+          <li data-reveal>
+            <span class="icon-circle">
+              <Icon name={icon} size={22} />
+            </span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  <section class="section sand-section">
+    <div class="container">
+      <SectionTitle
+        eyebrow="Meet your next ride"
+        title="A Vehicle for Your Plans"
+        href="/vehicles/"
+        link="Explore Our Fleet"
+      />
+    </div>
+    <div class="carousel" data-carousel>
+      <div class="carousel-track" data-carousel-track tabindex="0" aria-label="Fleet, scroll horizontally">
+        {vehicles.map((vehicle) => (
+          <VehicleCard vehicle={vehicle} />
+        ))}
+      </div>
+      <div class="container carousel-controls">
+        <p class="carousel-hint">
+          <Icon name="car" size={16} /> Swipe or use the arrows
+        </p>
+        <div class="carousel-buttons">
+          <button type="button" class="icon-button" data-carousel-prev aria-label="Previous vehicles">
+            <Icon name="chevron-left" size={20} />
+          </button>
+          <button type="button" class="icon-button" data-carousel-next aria-label="Next vehicles">
+            <Icon name="chevron-right" size={20} />
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <FinalCTA />
+</Layout>

@@ -1,0 +1,41 @@
+---
+import Icon from './Icon.astro';
+import { serviceOptions, vehicles } from '../data/site';
+---
+
+<form class="trip-planner" action="/contact/" method="get" aria-label="Start planning your trip">
+  <label class="planner-field">
+    <span class="planner-label">
+      <Icon name="compass" size={16} /> I need
+    </span>
+    <select name="service" class="select">
+      <option value="">Choose a service</option>
+      {serviceOptions.map((option) => (
+        <option>{option}</option>
+      ))}
+    </select>
+  </label>
+  <label class="planner-field">
+    <span class="planner-label">
+      <Icon name="car" size={16} /> Vehicle
+    </span>
+    <select name="vehicle" class="select">
+      <option value="">Help me choose</option>
+      {vehicles.map((v) => (
+        <option value={v.name}>{v.short}</option>
+      ))}
+    </select>
+  </label>
+  <label class="planner-field">
+    <span class="planner-label">
+      <Icon name="calendar" size={16} /> Travel date
+    </span>
+    <input name="date" type="date" data-min-today />
+  </label>
+  <button type="submit" class="button">
+    <span class="button-label">Plan My Trip</span>
+    <span class="button-icon">
+      <Icon name="arrow" size={17} />
+    </span>
+  </button>
+</form>

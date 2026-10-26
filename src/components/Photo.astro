@@ -1,0 +1,40 @@
+---
+import images from '../data/images.json';
+interface Props {
+  name: string;
+  alt: string;
+  class?: string;
+  sizes?: string;
+  eager?: boolean;
+  /** CSS object-position override for this placement */
+  position?: string;
+}
+const {
+  name,
+  alt,
+  class: className,
+  sizes = '(max-width: 640px) 100vw, 50vw',
+  eager = false,
+  position,
+} = Astro.props;
+const data = images[name as keyof typeof images];
+if (!data) throw new Error(`Missing optimized image: ${name}`);
+const focal: Record<string, string> = {
+  'south-goa': 'center 100%',
+  dudhsagar: 'center 68%',
+  'ai-hero-coast-road': '62% center',
+  'ai-chauffeur-family': 'center 40%',
+};
+const objectPosition = position || focal[name];
+---
+
+<img
+  {...data}
+  alt={alt}
+  class={className}
+  style={objectPosition ? `object-position:${objectPosition}` : undefined}
+  sizes={sizes}
+  loading={eager ? 'eager' : 'lazy'}
+  fetchpriority={eager ? 'high' : 'auto'}
+  decoding="async"
+/>

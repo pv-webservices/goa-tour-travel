@@ -1,0 +1,39 @@
+---
+import Photo from './Photo.astro';
+import Button from './Button.astro';
+interface Props {
+  image: string;
+  title: string;
+  text?: string;
+  href: string;
+  label?: string;
+  class?: string;
+  eyebrow?: string;
+  alt?: string;
+  position?: string;
+  note?: string;
+}
+const {
+  image,
+  title,
+  text,
+  href,
+  label = 'Explore more',
+  class: className = '',
+  eyebrow,
+  alt = '',
+  position,
+  note,
+} = Astro.props;
+---
+
+<article class:list={['scenic-banner', className]} data-reveal>
+  <Photo name={image} alt={alt} sizes="(max-width: 760px) 100vw, 60vw" position={position} />
+  <div class="scenic-content">
+    {eyebrow && <p class="eyebrow light">{eyebrow}</p>}
+    <h3>{title}</h3>
+    {text && <p>{text}</p>}
+    <Button href={href}>{label}</Button>
+  </div>
+  {note && <span class="image-note">{note}</span>}
+</article>

@@ -1,0 +1,195 @@
+- generic [active] [ref=f132e1]:
+  - link "Skip to content" [ref=f132e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=f132e3]:
+    - generic [ref=f132e4]:
+      - link "Fatima Tour and Travel home" [ref=f132e5] [cursor=pointer]:
+        - /url: /
+        - img "Fatima Tour and Travels" [ref=f132e6]
+      - navigation "Main navigation" [ref=f132e7]:
+        - link "Home" [ref=f132e8] [cursor=pointer]:
+          - /url: /
+        - link "About Us" [ref=f132e9] [cursor=pointer]:
+          - /url: /about/
+        - link "Our Vehicles" [ref=f132e10] [cursor=pointer]:
+          - /url: /vehicles/
+        - link "Tour Packages" [ref=f132e11] [cursor=pointer]:
+          - /url: /tour-packages/
+        - link "Services" [ref=f132e12] [cursor=pointer]:
+          - /url: /services/
+        - link "Gallery" [ref=f132e13] [cursor=pointer]:
+          - /url: /gallery/
+        - link "Contact Us" [ref=f132e14] [cursor=pointer]:
+          - /url: /contact/
+      - link "+91 80806 43517" [ref=f132e15] [cursor=pointer]:
+        - /url: tel:+918080643517
+  - main [ref=f132e19]:
+    - generic [ref=f132e21]:
+      - navigation "Breadcrumb" [ref=f132e22]:
+        - link "Home" [ref=f132e23] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f132e24]: /
+        - generic [ref=f132e25]: Let’s Go Places
+      - paragraph [ref=f132e26]: Contact Fatima
+      - heading "Let’s Go Places" [level=1] [ref=f132e27]
+      - paragraph [ref=f132e28]: A quick transfer or a whole new adventure. Tell us what you have in mind, and let’s start planning.
+    - generic [ref=f132e30]:
+      - generic [ref=f132e31]:
+        - paragraph [ref=f132e32]: A conversation away
+        - heading "Good Journeys Start Here." [level=2] [ref=f132e33]
+        - paragraph [ref=f132e34]: Get in touch for vehicle availability, package details and a quote for your route.
+        - generic [ref=f132e39]:
+          - generic [ref=f132e40]: Give us a call
+          - link "+91 80806 43517" [ref=f132e41] [cursor=pointer]:
+            - /url: tel:+918080643517
+        - generic [ref=f132e46]:
+          - generic [ref=f132e47]: Plan it over WhatsApp
+          - link "Chat with Fatima" [ref=f132e48] [cursor=pointer]:
+            - /url: https://wa.me/918080643517?text=Hello%20Fatima%20Tour%20and%20Travel%2C%20I%20would%20like%20to%20enquire%20about%20a%20trip%20in%20Goa.%20Please%20share%20availability%20and%20pricing.
+        - generic [ref=f132e53]:
+          - generic [ref=f132e54]: Write to us
+          - link "vaseem9823@gmail.com" [ref=f132e55] [cursor=pointer]:
+            - /url: mailto:vaseem9823@gmail.com
+        - generic [ref=f132e60]:
+          - generic [ref=f132e61]: Our location
+          - paragraph [ref=f132e62]: Goa, India
+        - generic [ref=f132e63]: Have your dates, pickup point and group size handy. These help us discuss a suitable vehicle and quotation.
+      - generic [ref=f132e64]:
+        - paragraph [ref=f132e65]: Let’s make a plan
+        - heading "Tell Us About Your Trip" [level=2] [ref=f132e66]
+        - paragraph [ref=f132e67]: Share a few details to prepare your WhatsApp enquiry.
+        - generic [ref=f132e68]:
+          - generic [ref=f132e69]:
+            - text: Full name
+            - textbox "Full name" [ref=f132e70]:
+              - /placeholder: Your name
+          - generic [ref=f132e71]:
+            - text: Mobile number
+            - textbox "Mobile number" [ref=f132e72]:
+              - /placeholder: Your contact number
+          - generic [ref=f132e73]:
+            - text: Email
+            - generic [ref=f132e74]: Optional
+            - textbox "Email Optional" [ref=f132e75]:
+              - /placeholder: you@example.com
+          - generic [ref=f132e76]:
+            - text: Interested service
+            - combobox "Interested service" [ref=f132e77]:
+              - option "Choose a service" [selected]
+              - option "Goa Tour Packages"
+              - option "Taxi & Rental Services"
+              - option "Airport Pickup & Drop"
+              - option "Outstation Travel"
+              - option "Corporate & Conference Travel"
+              - option "Driver-Included Day Packages"
+              - option "Group Transportation"
+              - option "Temple Tours"
+              - option "Dudhsagar Waterfall"
+              - option "Other Travel Enquiry"
+          - generic [ref=f132e78]:
+            - text: Preferred vehicle
+            - generic [ref=f132e79]: Optional
+            - combobox "Preferred vehicle Optional" [ref=f132e80]:
+              - option "Help me choose" [selected]
+              - option "Toyota Innova Crysta"
+              - option "Toyota Innova Hycross"
+              - option "Maruti Suzuki Ertiga"
+              - option "Maruti Suzuki Dzire"
+              - option "Toyota Glanza"
+              - option "Tata Winger"
+              - option "Tempo Traveller"
+              - option "Force Urbania"
+              - option "Toyota Fortuner"
+              - option "BharatBenz 40-Seater Bus"
+          - generic [ref=f132e81]:
+            - text: Pickup location
+            - textbox "Pickup location" [ref=f132e82]:
+              - /placeholder: Hotel, airport or pickup area
+          - generic [ref=f132e83]:
+            - text: Drop location
+            - generic [ref=f132e84]: Optional
+            - textbox "Drop location Optional" [ref=f132e85]:
+              - /placeholder: Your destination
+          - generic [ref=f132e86]:
+            - text: Travel date
+            - generic [ref=f132e87]: Optional
+            - textbox "Travel date Optional" [ref=f132e88]
+          - generic [ref=f132e89]:
+            - text: Number of passengers
+            - generic [ref=f132e90]: Optional
+            - spinbutton "Number of passengers Optional" [ref=f132e91]
+          - generic [ref=f132e92]:
+            - text: Message
+            - textbox "Message" [ref=f132e93]:
+              - /placeholder: Preferred tour, travel duration or anything else we should know
+        - button "Prepare WhatsApp Enquiry" [ref=f132e94] [cursor=pointer]
+        - paragraph [ref=f132e97]: We’ll prepare a message for you to review. Open WhatsApp and send it to our team when you’re ready. This form does not send or confirm a booking.
+  - contentinfo [ref=f132e98]:
+    - generic [ref=f132e99]:
+      - generic [ref=f132e100]:
+        - link "Fatima Tour and Travel home" [ref=f132e101] [cursor=pointer]:
+          - /url: /
+          - img "Fatima Tour and Travels" [ref=f132e102]
+        - paragraph [ref=f132e103]: Goa’s coastline. Your favourite people.A journey worth making.
+        - paragraph [ref=f132e104]: Tours, transfers & driver-included travel.
+      - generic [ref=f132e105]:
+        - heading "Explore Fatima" [level=2] [ref=f132e106]
+        - list [ref=f132e107]:
+          - listitem [ref=f132e108]:
+            - link "About Us" [ref=f132e109] [cursor=pointer]:
+              - /url: /about/
+          - listitem [ref=f132e110]:
+            - link "Our Vehicles" [ref=f132e111] [cursor=pointer]:
+              - /url: /vehicles/
+          - listitem [ref=f132e112]:
+            - link "Tour Packages" [ref=f132e113] [cursor=pointer]:
+              - /url: /tour-packages/
+          - listitem [ref=f132e114]:
+            - link "Services" [ref=f132e115] [cursor=pointer]:
+              - /url: /services/
+          - listitem [ref=f132e116]:
+            - link "Gallery" [ref=f132e117] [cursor=pointer]:
+              - /url: /gallery/
+          - listitem [ref=f132e118]:
+            - link "Contact Us" [ref=f132e119] [cursor=pointer]:
+              - /url: /contact/
+          - listitem [ref=f132e120]:
+            - link "FAQs" [ref=f132e121] [cursor=pointer]:
+              - /url: /faq/
+      - generic [ref=f132e122]:
+        - heading "Travel With Us" [level=2] [ref=f132e123]
+        - list [ref=f132e124]:
+          - listitem [ref=f132e125]:
+            - link "Taxi & Car Rentals" [ref=f132e126] [cursor=pointer]:
+              - /url: /services/taxi-and-rental/
+          - listitem [ref=f132e127]:
+            - link "Airport Transfers" [ref=f132e128] [cursor=pointer]:
+              - /url: /services/airport-transfers/
+          - listitem [ref=f132e129]:
+            - link "Outstation Travel" [ref=f132e130] [cursor=pointer]:
+              - /url: /services/outstation-travel/
+          - listitem [ref=f132e131]:
+            - link "Corporate Travel" [ref=f132e132] [cursor=pointer]:
+              - /url: /services/corporate-travel/
+          - listitem [ref=f132e133]:
+            - link "Temple Tours" [ref=f132e134] [cursor=pointer]:
+              - /url: /tour-packages/temple-tours/
+          - listitem [ref=f132e135]:
+            - link "Day Packages" [ref=f132e136] [cursor=pointer]:
+              - /url: /services/day-packages/
+      - generic [ref=f132e137]:
+        - heading "Let’s Talk Travel" [level=2] [ref=f132e138]
+        - link "+91 80806 43517" [ref=f132e139] [cursor=pointer]:
+          - /url: tel:+918080643517
+        - link "vaseem9823@gmail.com" [ref=f132e142] [cursor=pointer]:
+          - /url: mailto:vaseem9823@gmail.com
+        - paragraph [ref=f132e145]: Goa, India
+        - link "Chat with us on WhatsApp" [ref=f132e148] [cursor=pointer]:
+          - /url: https://wa.me/918080643517?text=Hello%20Fatima%20Tour%20and%20Travel%2C%20I%20would%20like%20to%20enquire%20about%20a%20trip%20in%20Goa.%20Please%20share%20availability%20and%20pricing.
+    - generic [ref=f132e151]:
+      - paragraph [ref=f132e152]: © 2026 Fatima Tour and Travel. All rights reserved.
+      - paragraph [ref=f132e153]: Made for the journey.
+      - link "Back to top" [ref=f132e154] [cursor=pointer]:
+        - /url: "#top"
+  - link "Enquire with Fatima Tour and Travel on WhatsApp" [ref=f132e157] [cursor=pointer]:
+    - /url: https://wa.me/918080643517?text=Hello%20Fatima%20Tour%20and%20Travel%2C%20I%20would%20like%20to%20enquire%20about%20a%20trip%20in%20Goa.%20Please%20share%20availability%20and%20pricing.

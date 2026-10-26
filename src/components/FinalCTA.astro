@@ -1,0 +1,60 @@
+---
+import Photo from './Photo.astro';
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+import { business, whatsapp } from '../data/site';
+---
+
+<section class="final-cta">
+  <Photo name="goa-sunset" alt="" sizes="100vw" />
+  <div class="container final-cta-inner" data-reveal>
+    <div>
+      <p class="eyebrow light">A little planning. A beautiful journey.</p>
+      <h2>
+        Ready to Explore <em>Goa?</em>
+      </h2>
+      <p>Tell us where you want to go, when, and who’s coming along. We’ll help you plan the ride.</p>
+      <div class="cta-actions">
+        <Button href="/contact/">Plan My Trip</Button>
+        <Button href={whatsapp()} variant="light">
+          Chat on WhatsApp
+        </Button>
+      </div>
+    </div>
+    <ul class="cta-contacts">
+      <li>
+        <a href={`tel:${business.phone}`}>
+          <span class="icon-circle">
+            <Icon name="phone" size={20} />
+          </span>
+          <span>
+            <small>Call us</small>
+            {business.displayPhone}
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href={`mailto:${business.email}`}>
+          <span class="icon-circle">
+            <Icon name="mail" size={20} />
+          </span>
+          <span>
+            <small>Email</small>
+            {business.email}
+          </span>
+        </a>
+      </li>
+      <li>
+        <span class="cta-contact-static">
+          <span class="icon-circle">
+            <Icon name="pin" size={20} />
+          </span>
+          <span>
+            <small>Based in</small>
+            {business.location}
+          </span>
+        </span>
+      </li>
+    </ul>
+  </div>
+</section>

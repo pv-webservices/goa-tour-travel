@@ -1,0 +1,144 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Photo from '../../components/Photo.astro';
+import Button from '../../components/Button.astro';
+import Icon from '../../components/Icon.astro';
+import TourCard from '../../components/TourCard.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import { tours, whatsapp, business } from '../../data/site';
+import images from '../../data/images.json';
+export function getStaticPaths() {
+  return tours.map((tour) => ({ params: { slug: tour.slug }, props: { tour } }));
+}
+const { tour: t } = Astro.props;
+const isPlanning = t.slug === 'temple-tours' || t.slug === 'dudhsagar-waterfall';
+const contactService =
+  t.slug === 'temple-tours'
+    ? 'Temple Tours'
+    : t.slug === 'dudhsagar-waterfall'
+      ? 'Dudhsagar Waterfall'
+      : 'Goa Tour Packages';
+---
+
+<Layout
+  title={`${t.name} — Goa Travel Package`}
+  description={`Explore ${t.name} with Fatima Tour and Travel. View trip highlights and request a quote for your group.`}
+  image={images[t.image as keyof typeof images].src}
+>
+  <PageHero
+    title={t.name}
+    text={t.description}
+    image={t.image}
+    eyebrow={t.label}
+    parent="Tour Packages"
+    parentHref="/tour-packages/"
+  />
+  <section class="section">
+    <div class="container detail-grid">
+      <div class="detail-main">
+        <figure class="detail-photo">
+          <Photo name={t.image} alt={t.alt} sizes="(max-width: 1000px) 100vw, 60vw" />
+          <figcaption class="photo-note">
+            {t.slug === 'temple-tours'
+              ? 'Illustration of Goan temple architecture; not a photograph of the proposed temples.'
+              : 'Destination photography. Your route and arrangements are confirmed when booking.'}
+          </figcaption>
+        </figure>
+        <div class="detail-body">
+          <p class="eyebrow">{isPlanning ? 'How it works' : 'Trip highlights'}</p>
+          <h2>{isPlanning ? 'Plan Your Journey' : 'Places to Look Forward To'}</h2>
+          <p class="lead">{t.description}</p>
+          <p class="itinerary-note">
+            {isPlanning
+              ? 'Start a conversation about your preferred route and arrangements.'
+              : 'Listed highlights are a guide to your enquiry, not a fixed schedule. Stop order and the final itinerary are agreed with our team.'}
+          </p>
+          <ol class="timeline">
+            {t.stops.map((stop, i) => (
+              <li data-reveal>
+                <span class="timeline-dot">{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3>{stop}</h3>
+                  {i === 0 && (
+                    <p>
+                      {isPlanning ? 'Start with your plans.' : 'Add this stop to your sightseeing enquiry.'}
+                    </p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div class="notice">{t.note}</div>
+          <div class="vehicle-prompt">
+            <div>
+              <h3>A Vehicle for Your Plans</h3>
+              <p>
+                Travelling as a couple, a family or a group? Explore our vehicles, then share your passenger
+                count and luggage needs for a suitable quote.
+              </p>
+            </div>
+            <Button href="/vehicles/" variant="outline">
+              Explore Our Vehicles
+            </Button>
+          </div>
+        </div>
+      </div>
+      <aside class="quote-card">
+        <p class="eyebrow">Let’s plan your escape</p>
+        <h2>Your {t.slug === 'temple-tours' ? 'Temple' : t.name.replace(' Tour', '')} Journey</h2>
+        <p class="quote-price">{t.price || 'Price on enquiry'}</p>
+        {t.price && (
+          <p class="fineprint">Confirm price basis, vehicle and inclusions with our team before booking.</p>
+        )}
+        <p>Share your dates, pickup point and group size for a personalised quote.</p>
+        <ul class="quote-facts">
+          <li>
+            <Icon name="car" size={18} /> Driver-included travel enquiries
+          </li>
+          <li>
+            <Icon name="users" size={18} /> Individuals, families & groups
+          </li>
+          <li>
+            <Icon name="sun" size={18} /> Your preferred route & stops
+          </li>
+        </ul>
+        <div class="quote-actions">
+          <Button href={whatsapp(`the ${t.name} package`)} variant="whatsapp">
+            Enquire on WhatsApp
+          </Button>
+          <Button href={`/contact/?service=${encodeURIComponent(contactService)}`} variant="outline">
+            Share Your Trip Details
+          </Button>
+        </div>
+        <a class="quote-phone" href={`tel:${business.phone}`}>
+          <span class="icon-circle">
+            <Icon name="phone" size={18} />
+          </span>
+          <span>
+            <small>Prefer to talk?</small>
+            {business.displayPhone}
+          </span>
+        </a>
+      </aside>
+    </div>
+  </section>
+  <section class="section sand-section">
+    <div class="container">
+      <SectionTitle
+        eyebrow="Keep exploring"
+        title="More Journeys to Discover"
+        href="/tour-packages/"
+        link="View All Packages"
+      />
+      <div class="tour-grid">
+        {tours
+          .filter((other) => other.slug !== t.slug)
+          .slice(0, 4)
+          .map((tour) => (
+            <TourCard tour={tour} />
+          ))}
+      </div>
+    </div>
+  </section>
+</Layout>

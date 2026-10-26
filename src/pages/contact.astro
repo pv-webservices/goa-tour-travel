@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
+import { business, whatsapp } from '../data/site';
+const methods = [
+  ['phone', 'Give us a call', business.displayPhone, `tel:${business.phone}`],
+  ['whatsapp', 'Plan it over WhatsApp', 'Chat with Fatima', whatsapp()],
+  ['mail', 'Write to us', business.email, `mailto:${business.email}`],
+  ['pin', 'Our location', business.location, ''],
+];
+---
+
+<Layout
+  title="Contact Us — Plan Your Goa Journey"
+  description="Contact Fatima Tour and Travel in Goa on +91 80806 43517 or vaseem9823@gmail.com. Prepare a WhatsApp enquiry for tours, taxis, airport transfers or group travel."
+>
+  <PageHero
+    title="Let’s Go Places"
+    text="A quick transfer or a whole new adventure. Tell us what you have in mind, and let’s start planning."
+    eyebrow="Contact Fatima"
+    image="goa-sunset"
+  />
+  <section class="section contact-section">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <p class="eyebrow">A conversation away</p>
+        <h2>Good Journeys Start Here.</h2>
+        <p class="lead">Get in touch for vehicle availability, package details and a quote for your route.</p>
+        <ul class="contact-methods">
+          {methods.map(([icon, label, value, href]) => (
+            <li>
+              {href ? (
+                <a
+                  class="contact-method"
+                  href={href}
+                  target={href.startsWith('https') ? '_blank' : undefined}
+                  rel={href.startsWith('https') ? 'noopener' : undefined}
+                >
+                  <span class:list={['icon-circle', { 'is-whatsapp': icon === 'whatsapp' }]}>
+                    <Icon name={icon} size={22} />
+                  </span>
+                  <span>
+                    <small>{label}</small>
+                    {value}
+                  </span>
+                  <Icon name="arrow-up-right" size={18} class="contact-arrow" />
+                </a>
+              ) : (
+                <div class="contact-method">
+                  <span class="icon-circle">
+                    <Icon name={icon} size={22} />
+                  </span>
+                  <span>
+                    <small>{label}</small>
+                    {value}
+                  </span>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+        <div class="notice">
+          Have your dates, pickup point and group size handy. These help us discuss a suitable vehicle and
+          quotation.
+        </div>
+      </div>
+      <EnquiryForm />
+    </div>
+  </section>
+</Layout>

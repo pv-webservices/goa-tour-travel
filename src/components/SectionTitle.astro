@@ -1,0 +1,26 @@
+---
+import Button from './Button.astro';
+interface Props {
+  eyebrow?: string;
+  title: string;
+  text?: string;
+  href?: string;
+  link?: string;
+  center?: boolean;
+  light?: boolean;
+}
+const { eyebrow, title, text, href, link, center = false, light = false } = Astro.props;
+---
+
+<div class:list={['section-heading', { center, light }]} data-reveal>
+  <div>
+    {eyebrow && <p class:list={['eyebrow', { light }]}>{eyebrow}</p>}
+    <h2>{title}</h2>
+    {text && <p class="section-description">{text}</p>}
+  </div>
+  {href && (
+    <Button href={href} variant={light ? 'light' : 'outline'}>
+      {link || 'Explore more'}
+    </Button>
+  )}
+</div>

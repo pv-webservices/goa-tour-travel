@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+---
+
+<dialog class="photo-dialog" id="photo-dialog" aria-label="Photograph preview">
+  <button type="button" class="dialog-close" aria-label="Close photograph preview">
+    <Icon name="close" />
+  </button>
+  <figure>
+    <img alt="" />
+    <figcaption aria-live="polite"></figcaption>
+  </figure>
+  <div class="dialog-navigation">
+    <button type="button" data-direction="-1" aria-label="Previous photograph">
+      <Icon name="chevron-left" size={20} /> <span>Previous</span>
+    </button>
+    <span class="photo-counter"></span>
+    <button type="button" data-direction="1" aria-label="Next photograph">
+      <span>Next</span> <Icon name="chevron-right" size={20} />
+    </button>
+  </div>
+</dialog>

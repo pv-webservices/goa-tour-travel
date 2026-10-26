@@ -1,0 +1,30 @@
+{
+  "name": "fatima-tour-and-travel",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0",
+    "check": "astro check",
+    "test": "node scripts/qa.mjs",
+    "images:generate": "node --env-file-if-exists=.env scripts/generate-images.mjs",
+    "images:optimize": "node scripts/optimize-images.mjs"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@fontsource/manrope": "^5.3.0",
+    "@fontsource/playfair-display": "^5.3.0",
+    "astro": "^7.4.2",
+    "sharp": "^0.35.5",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.64.1",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.2",
+    "vite": "^8.3.5"
+  }
+}

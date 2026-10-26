@@ -1,0 +1,116 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Photo from '../../components/Photo.astro';
+import Icon from '../../components/Icon.astro';
+import Button from '../../components/Button.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import ScenicBanner from '../../components/ScenicBanner.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import { services, whatsapp } from '../../data/site';
+const durations = [
+  ['8-Hour Package', 'For a local outing or planned appointments.'],
+  ['12-Hour Package', 'For a longer day of sightseeing and travel.'],
+  ['24-Hour Package', 'Discuss your extended travel requirements.'],
+  ['Full-Day Package', 'Plan a day around your favourite places.'],
+];
+---
+
+<Layout
+  title="Travel Services in Goa — Taxi, Airport & Corporate"
+  description="Plan driver-included taxi rentals, airport pickup and drop, corporate travel, outstation journeys and group transportation with Fatima Tour and Travel in Goa."
+>
+  <PageHero
+    title="Every Journey Has a Purpose"
+    text="From a first arrival to a day of exploring, find travel services shaped around where you need to be."
+    eyebrow="Our travel services"
+    image="ai-airport-transfer"
+  />
+  <section class="section">
+    <div class="container">
+      <SectionTitle
+        eyebrow="Here for the journey"
+        title="How Would You Like to Travel?"
+        text="Tell us your plans. We’ll help you explore a vehicle, a route and a booking duration that works for your trip."
+      />
+      <div class="services-list">
+        {services.map((s, i) => (
+          <article class="service-row" data-reveal>
+            <a href={`/services/${s.slug}/`} class="service-media" tabindex="-1" aria-hidden="true">
+              <Photo name={s.image} alt="" sizes="(max-width: 900px) 100vw, 50vw" />
+              {s.kind === 'scene' && <span class="image-note">Illustrative scene</span>}
+            </a>
+            <div class="service-body">
+              <span class="service-index">{String(i + 1).padStart(2, '0')}</span>
+              <p class="eyebrow">{s.label}</p>
+              <h2>
+                <a href={`/services/${s.slug}/`}>{s.name}</a>
+              </h2>
+              <p>{s.description}</p>
+              <ul class="pill-list" aria-label={`${s.name} options`}>
+                {s.details.map((d) => (
+                  <li>{d}</li>
+                ))}
+              </ul>
+              <div class="service-actions">
+                <Button href={`/services/${s.slug}/`}>Explore Service</Button>
+                <a
+                  class="icon-button whatsapp"
+                  href={whatsapp(s.prompt)}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={`Enquire about ${s.name} on WhatsApp`}
+                >
+                  <Icon name="whatsapp" size={19} />
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section sand-section">
+    <div class="container">
+      <SectionTitle
+        eyebrow="Make time for your plans"
+        title="Your Day. Your Booking Duration."
+        text="Explore driver-included booking options. Route, distance and all inclusions are agreed with your quotation."
+      />
+      <div class="duration-grid">
+        {durations.map(([duration, text]) => (
+          <article class="duration-card" data-reveal>
+            <span class="icon-circle">
+              <Icon name="clock" size={22} />
+            </span>
+            <h3>{duration}</h3>
+            <p>{text}</p>
+            <p class="fineprint">Driver-included enquiry · Quote on request</p>
+            <a
+              class="text-link"
+              href={whatsapp(`the ${duration} with a driver`)}
+              target="_blank"
+              rel="noopener"
+            >
+              Enquire for Quote <Icon name="arrow" size={16} />
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <ScenicBanner
+        image="palolem"
+        title="Goa Sightseeing, Your Way"
+        text="Explore North Goa, South Goa and coastal escapes with our tour package enquiries."
+        href="/tour-packages/"
+        label="Explore Tour Packages"
+        eyebrow="Go a little further"
+        class="wide-banner"
+      />
+    </div>
+  </section>
+  <FinalCTA />
+</Layout>

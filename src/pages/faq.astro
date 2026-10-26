@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import FAQList from '../components/FAQList.astro';
+import { business, faqs, whatsapp } from '../data/site';
+---
+
+<Layout
+  title="Frequently Asked Questions — Goa Travel & Bookings"
+  description="Answers about Fatima Tour and Travel enquiries, vehicle bookings, Goa tours, airport transfers, day packages, pricing and booking arrangements."
+>
+  <PageHero
+    title="A Few Things Before You Go"
+    text="Useful answers for planning your vehicle, tour and travel enquiry."
+    eyebrow="Frequently asked questions"
+    image="goa-beach"
+  />
+  <section class="section">
+    <div class="container faq-grid">
+      <div class="faq-intro">
+        <p class="eyebrow">Happy to help you plan</p>
+        <h2>Every Journey Starts With a Question.</h2>
+        <p>Looking for something more specific? Share your plans with our team.</p>
+        <div class="hero-actions">
+          <Button href={whatsapp('my travel plans and a few booking questions')} variant="whatsapp">
+            Ask Us on WhatsApp
+          </Button>
+          <Button href={`tel:${business.phone}`} variant="outline" icon="phone">
+            Call {business.displayPhone}
+          </Button>
+        </div>
+      </div>
+      <FAQList items={faqs} />
+    </div>
+  </section>
+</Layout>

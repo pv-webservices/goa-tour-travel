@@ -1,0 +1,13 @@
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const root = 'output/domain-check/';
+const html = await fs.readFile(root + 'index.html', 'utf8');
+const sitemap = await fs.readFile(root + 'sitemap.xml', 'utf8');
+const robots = await fs.readFile(root + 'robots.txt', 'utf8');
+assert.match(html, /rel="canonical" href="https:\/\/fatima\.example\/"/);
+assert.match(html, /name="robots" content="index, follow"/);
+assert.match(html, /property="og:image" content="https:\/\/fatima\.example\/media\//);
+assert.equal((sitemap.match(/<url>/g) || []).length, 30);
+assert(!sitemap.includes('404'));
+assert(robots.includes('Sitemap: https://fatima.example/sitemap.xml'));
+console.log('Configured-domain canonical, Open Graph, robots and 30 sitemap routes verified.');
