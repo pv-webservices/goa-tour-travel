@@ -65,7 +65,7 @@ Saved under `output/playwright/`:
 
 - Set the confirmed domain, rebuild, deploy and check the actual production URLs and hosting 404 behaviour.
 - Confirm WhatsApp is active on the supplied number and manually verify enquiry receipt. No enquiry was sent during development.
-- Confirm the ₹3,500 price basis, temple designations/routes, vehicle availability and all quoted inclusions or payment/cancellation terms with the business.
+- Confirm temple designations/routes, vehicle availability and all quoted inclusions or payment/cancellation terms with the business.
 - Obtain current Urbania and Fortuner photos if they should be displayed. Those enquiry listings currently offer photographs on request.
 - A precise office address, map location, social profiles and real customer reviews remain omitted because they were not supplied.
 

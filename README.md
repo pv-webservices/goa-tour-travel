@@ -1,6 +1,6 @@
 # Fatima Tour and Travel
 
-A complete static business website for Goa tours, taxi and driver-included rentals, airport transfers, corporate journeys and outstation travel. Built with Astro, TypeScript and structured CSS. No database or booking dashboard is required.
+A complete static business website for Goa tours, driver-included taxi services, airport transfers, corporate journeys and outstation travel. Built with Astro, TypeScript and structured CSS. No database or booking dashboard is required.
 
 ## Run locally
 
@@ -28,7 +28,7 @@ The production output is `dist/`. Serve that directory using a static host with 
 - Home, About, Vehicles, Tour Packages, Services, Gallery, Contact and FAQ.
 - Ten vehicle detail pages.
 - Six tour detail pages: four Goa routes, Dudhsagar Waterfall and temple tour enquiries.
-- Six service detail pages: taxi/rental, airport, outstation, corporate, day bookings and group transport.
+- Six service detail pages: taxi, airport, outstation, corporate, day bookings and group transport.
 
 ## Business details and content
 
@@ -38,7 +38,7 @@ Edit `src/data/site.ts` for the business name, telephone, WhatsApp number, email
 - The supplied `force` photos are used for the Tempo Traveller listing.
 - The Dzire and Force Urbania now use the client's own photos (`public/new car images/`). The Fortuner still has no client photo; it shows a generated SUV clearly labelled "Representative image" and offers current photographs on request.
 - Only the explicitly supplied BharatBenz 40-seater capacity is stated. Other seating, luggage, variants, amenities and availability are not assumed.
-- North Goa Extreme displays the supplied ₹3,500 amount. Its price basis and inclusions must be agreed with the business. Other trips require a quote.
+- All tour packages, including North Goa Extreme, are priced on enquiry.
 - Temple designations and routes need confirmation; no unrelated temple image or fixed itinerary is presented as verified.
 - No reviews, experience figures, ratings, social accounts, full address, office hours, guarantees or cancellation policy were invented.
 
