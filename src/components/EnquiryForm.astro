@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { business, serviceOptions, vehicles } from '../data/site';
+import { business, serviceOptions, vehicles, whatsapp } from '../data/site';
 ---
 
 <form class="contact-form" id="enquiry-form" data-whatsapp={business.whatsapp} data-business={business.name}>
@@ -12,105 +12,129 @@ import { business, serviceOptions, vehicles } from '../data/site';
       skipped.
     </p>
   </div>
-  <div class="form-grid">
-    <label class="field">
-      <span class="field-label">Full name</span>
-      <input name="name" autocomplete="name" required maxlength="100" placeholder="Your name" />
-    </label>
-    <label class="field">
-      <span class="field-label">Mobile number</span>
-      <input
-        name="phone"
-        type="tel"
-        autocomplete="tel"
-        required
-        pattern="[+0-9 \(\)\-]{7,20}"
-        title="Enter a mobile number using 7 to 20 characters: digits, spaces, +, brackets or hyphens."
-        maxlength="20"
-        placeholder="Your contact number"
-      />
-    </label>
-    <label class="field">
-      <span class="field-label">
-        Email <span class="optional">Optional</span>
-      </span>
-      <input name="email" type="email" autocomplete="email" maxlength="150" placeholder="you@example.com" />
-    </label>
-    <label class="field">
-      <span class="field-label">Interested service</span>
-      <select name="service" class="select" required>
-        <option value="">Choose a service</option>
-        {serviceOptions.map((option) => (
-          <option>{option}</option>
-        ))}
-      </select>
-    </label>
-    <label class="field">
-      <span class="field-label">
-        Preferred vehicle <span class="optional">Optional</span>
-      </span>
-      <select name="vehicle" class="select">
-        <option value="">Help me choose</option>
-        {vehicles.map((v) => (
-          <option>{v.name}</option>
-        ))}
-      </select>
-    </label>
-    <label class="field">
-      <span class="field-label">
-        Travel date <span class="optional">Optional</span>
-      </span>
-      <input name="date" type="date" data-min-today />
-    </label>
-    <label class="field">
-      <span class="field-label">Pickup location</span>
-      <input
-        name="pickup"
-        required
-        maxlength="200"
-        autocomplete="off"
-        placeholder="Hotel, airport or pickup area"
-      />
-    </label>
-    <label class="field">
-      <span class="field-label">
-        Drop location <span class="optional">Optional</span>
-      </span>
-      <input name="drop" maxlength="200" autocomplete="off" placeholder="Your destination" />
-    </label>
-    <label class="field">
-      <span class="field-label">
-        Number of passengers <span class="optional">Optional</span>
-      </span>
-      <input name="passengers" type="number" min="1" max="500" step="1" placeholder="Your group size" />
-    </label>
-    <label class="field wide">
-      <span class="field-label">Message</span>
-      <textarea
-        name="message"
-        required
-        maxlength="1500"
-        rows="4"
-        placeholder="Preferred tour, travel duration or anything else we should know"
-      ></textarea>
-    </label>
-  </div>
-  <div class="form-actions">
-    <button type="submit" class="button">
-      <span class="button-label">Prepare WhatsApp Enquiry</span>
-      <span class="button-icon">
-        <Icon name="arrow" size={17} />
-      </span>
-    </button>
+  <fieldset disabled data-enquiry-fields>
+    <legend class="sr-only">Travel enquiry details</legend>
+    <div class="form-grid">
+      <label class="field">
+        <span class="field-label">Full name</span>
+        <input
+          name="name"
+          autocomplete="name"
+          required
+          minlength="2"
+          maxlength="100"
+          placeholder="Your name"
+        />
+      </label>
+      <label class="field">
+        <span class="field-label">Mobile number</span>
+        <input
+          name="phone"
+          type="tel"
+          autocomplete="tel"
+          required
+          pattern="\+?[0-9 \(\)\-]{7,30}"
+          title="Enter 7 to 15 digits, optionally with a leading +, spaces, brackets or hyphens."
+          maxlength="30"
+          placeholder="Your contact number"
+        />
+      </label>
+      <label class="field">
+        <span class="field-label">
+          Email <span class="optional">Optional</span>
+        </span>
+        <input name="email" type="email" autocomplete="email" maxlength="150" placeholder="you@example.com" />
+      </label>
+      <label class="field">
+        <span class="field-label">Interested service</span>
+        <select name="service" class="select" required>
+          <option value="">Choose a service</option>
+          {serviceOptions.map((option) => (
+            <option>{option}</option>
+          ))}
+        </select>
+      </label>
+      <label class="field">
+        <span class="field-label">
+          Preferred vehicle <span class="optional">Optional</span>
+        </span>
+        <select name="vehicle" class="select">
+          <option value="">Help me choose</option>
+          {vehicles.map((v) => (
+            <option>{v.name}</option>
+          ))}
+        </select>
+      </label>
+      <label class="field">
+        <span class="field-label">
+          Travel date <span class="optional">Optional</span>
+        </span>
+        <input name="date" type="date" data-min-today />
+      </label>
+      <label class="field">
+        <span class="field-label">Pickup location</span>
+        <input
+          name="pickup"
+          required
+          minlength="2"
+          maxlength="200"
+          autocomplete="off"
+          placeholder="Hotel, airport or pickup area"
+        />
+      </label>
+      <label class="field">
+        <span class="field-label">
+          Drop location <span class="optional">Optional</span>
+        </span>
+        <input name="drop" maxlength="200" autocomplete="off" placeholder="Your destination" />
+      </label>
+      <label class="field">
+        <span class="field-label">
+          Number of passengers <span class="optional">Optional</span>
+        </span>
+        <input name="passengers" type="number" min="1" max="500" step="1" placeholder="Your group size" />
+      </label>
+      <label class="field wide">
+        <span class="field-label">Message</span>
+        <textarea
+          name="message"
+          required
+          minlength="5"
+          maxlength="1000"
+          rows="4"
+          placeholder="Preferred tour, travel duration or anything else we should know"
+        ></textarea>
+      </label>
+    </div>
     <p class="form-note">
-      You’ll review the message before sending it from WhatsApp. This form does not send anything or confirm a
-      booking.
+      Your details will be included in a WhatsApp link. Review our{' '}
+      <a href="/privacy-policy/">privacy policy</a> before continuing.
     </p>
-  </div>
+    <div class="form-actions">
+      <button type="submit" class="button">
+        <span class="button-label">Enquire on WhatsApp</span>
+        <span class="button-icon">
+          <Icon name="arrow" size={17} />
+        </span>
+      </button>
+      <p class="form-note">
+        You’ll review the message before sending it from WhatsApp. This form does not send anything or confirm
+        a booking.
+      </p>
+    </div>
+  </fieldset>
+  <p class="form-note" data-enquiry-status role="status" aria-live="polite"></p>
+  <p class="form-note">
+    You can also{' '}
+    <a href={whatsapp()} target="_blank" rel="noopener noreferrer">
+      open WhatsApp directly
+    </a>{' '}
+    or <a href={`tel:${business.phone}`}>call {business.displayPhone}</a>. If WhatsApp does not open, use
+    these alternatives.
+  </p>
   <noscript>
     <p class="notice">
-      To use the enquiry form, enable JavaScript. You can also <a href={`tel:${business.phone}`}>call us</a>{' '}
-      or email <a href={`mailto:${business.email}`}>{business.email}</a>.
+      Enable JavaScript to prepare an enquiry from the form, or use the direct WhatsApp and phone links above.
     </p>
   </noscript>
   <section
@@ -123,13 +147,20 @@ import { business, serviceOptions, vehicles } from '../data/site';
     <h3 id="preview-heading">
       <Icon name="check" size={20} /> Your enquiry is ready to review
     </h3>
-    <p>Check the details below, then open WhatsApp to send your message. Nothing has been sent yet.</p>
+    <p>
+      Review and send the message yourself in WhatsApp. Opening a link does not confirm delivery or a booking.
+      If the new tab did not open, use the link below or copy the message.
+    </p>
     <pre></pre>
-    <a class="button whatsapp" href={`https://wa.me/${business.whatsapp}`} target="_blank" rel="noopener">
+    <a class="button whatsapp" href={whatsapp()} target="_blank" rel="noopener noreferrer">
       <span class="button-label">Open WhatsApp to Send</span>
       <span class="button-icon">
         <Icon name="whatsapp" size={18} />
       </span>
     </a>
+    <button type="button" class="button outline" data-copy-enquiry>
+      <span class="button-label">Copy enquiry message</span>
+    </button>
+    <p data-copy-status role="status" aria-live="polite"></p>
   </section>
 </form>

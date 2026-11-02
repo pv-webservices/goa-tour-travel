@@ -1,0 +1,131 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.fatimatourandtravels.com"
+        }
+      ],
+      "destination": "https://fatimatourandtravels.com/:path",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/:path+/index.html",
+      "destination": "/:path+/",
+      "permanent": true
+    },
+    {
+      "source": "/index.php",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/about-us/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/contact-us/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/index.php/our-services/",
+      "destination": "/services/",
+      "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/our-services",
+      "destination": "/services/",
+      "permanent": true
+    },
+    {
+      "source": "/our-services/",
+      "destination": "/services/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        }
+      ]
+    },
+    {
+      "source": "/_astro/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/:file(favicon.*|apple-touch-icon\\.png|site\\.webmanifest)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    }
+  ]
+}

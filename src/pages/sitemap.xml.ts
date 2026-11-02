@@ -10,6 +10,7 @@ export const GET: APIRoute = ({ site }) => {
     '/gallery/',
     '/contact/',
     '/faq/',
+    '/privacy-policy/',
     ...vehicles.map((v) => `/vehicles/${v.slug}/`),
     ...tours.map((t) => `/tour-packages/${t.slug}/`),
     ...services.map((s) => `/services/${s.slug}/`),

@@ -36,7 +36,7 @@ const methods = [
                   class="contact-method"
                   href={href}
                   target={href.startsWith('https') ? '_blank' : undefined}
-                  rel={href.startsWith('https') ? 'noopener' : undefined}
+                  rel={href.startsWith('https') ? 'noopener noreferrer' : undefined}
                 >
                   <span class:list={['icon-circle', { 'is-whatsapp': icon === 'whatsapp' }]}>
                     <Icon name={icon} size={22} />

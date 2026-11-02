@@ -48,7 +48,7 @@ for (const file of htmlFiles) {
     !/98765|987654|24\/7|5-star|five-star|aggregateRating|reviewRating|₹3,300/.test(html),
     `Unverified mockup claim: ${file}`,
   );
-  for (const [, href] of html.matchAll(/(?:href|src|poster)="([^"\s]+)"/g)) {
+  for (const [, href] of html.matchAll(/(?:href|src|poster|data-poster)="([^"\s]+)"/g)) {
     if (href.startsWith('/') && !href.startsWith('//')) {
       let local = decodeURIComponent(href.split(/[?#]/)[0]).slice(1);
       if (!path.extname(local)) local = path.join(local, 'index.html');
@@ -72,6 +72,9 @@ console.log(`Static checks: ${results.staticChecks} pages, ${results.failures.le
 
 const browser = await chromium.launch({ headless: true });
 const context = await browser.newContext({ reducedMotion: 'reduce' });
+await context.addInitScript(() => {
+  window.open = () => null;
+});
 const page = await context.newPage();
 page.on('pageerror', (error) => results.pageErrors.push({ url: page.url(), error: error.message }));
 page.on('console', (message) => {
@@ -115,7 +118,7 @@ try {
           : route.startsWith('/services/')
             ? '/services/'
             : route;
-      if (!['/faq/', '/404.html'].includes(route))
+      if (!['/faq/', '/404.html', '/privacy-policy/'].includes(route))
         check(observation.active.includes(expectedActive), `Wrong active navigation: ${route} at ${width}`);
       results.viewportChecks.push({
         route,
@@ -184,7 +187,7 @@ try {
   await page.goto(base + '/contact/?vehicle=Toyota%20Innova%20Crysta&service=Airport%20Pickup%20%26%20Drop');
   assert.equal(await page.locator('[name=vehicle]').inputValue(), 'Toyota Innova Crysta');
   assert.equal(await page.locator('[name=service]').inputValue(), 'Airport Pickup & Drop');
-  await page.getByRole('button', { name: 'Prepare WhatsApp Enquiry', exact: true }).click();
+  await page.getByRole('button', { name: 'Enquire on WhatsApp', exact: true }).click();
   assert.equal(await page.locator('#enquiry-preview').isVisible(), false);
   await page.locator('[name=name]').fill('   ');
   assert.equal(await page.locator('[name=name]').evaluate((el) => el.validity.valid), false);
@@ -204,7 +207,7 @@ try {
   assert.equal(await page.locator('[name=date]').evaluate((el) => el.validity.valid), false);
   await page.locator('[name=date]').fill('');
   await page.locator('[name=message]').fill('North Goa & airport enquiry <script>test</script>');
-  await page.getByRole('button', { name: 'Prepare WhatsApp Enquiry', exact: true }).click();
+  await page.getByRole('button', { name: 'Enquire on WhatsApp', exact: true }).click();
   assert.equal(await page.locator('#enquiry-preview').isVisible(), true);
   const waUrl = new URL(await page.locator('#enquiry-preview a').getAttribute('href'));
   assert.equal(waUrl.hostname, 'wa.me');

@@ -4,6 +4,6 @@
 .nav-list{flex-direction:row;flex-wrap:wrap;gap:4px 8px}
 .nav-item{border:0}
 .nav-item>a{font-family:inherit;font-size:14px;min-height:44px}
-.submenu-toggle,.submenu,.menu-toggle,.filter-bar,.nav-drawer-contact,.carousel-buttons{display:none!important}
+.submenu-toggle,.submenu,.menu-toggle,.filter-bar,.nav-drawer-contact,.carousel-buttons,.ribbon-toggle{display:none!important}
 .mobile-only{display:flex}
 .home-hero,.page-hero,.not-found{padding-top:40px}

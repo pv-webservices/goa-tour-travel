@@ -1,6 +1,6 @@
 # Asset sources
 
-Original logo, vehicle photographs and video: client supplied in public/. Photographs are used without making fleet ownership or availability claims.
+Original logo and vehicle photographs: client supplied, preserved under source-files/original-images/brand/ and source-files/original-images/vehicles/. The supplied video is public/assets/vehicles/tata-winger-video.mp4. Photographs are used without making fleet ownership or availability claims.
 
 Destination photographs downloaded locally under the [Unsplash License](https://unsplash.com/license):
 
@@ -15,25 +15,29 @@ Destination photographs downloaded locally under the [Unsplash License](https://
 
 ## New client photographs (October 2026)
 
-- `public/new car images/swift dezire img-*.jpeg` — Maruti Suzuki Dzire exterior and interior. Replaces the earlier
+- `source-files/original-images/vehicles/swift-dezire-img-*.jpeg` — Maruti Suzuki Dzire exterior and interior. Replaces the earlier
   `misc` hatchback photos that had been standing in for the Dzire.
-- `public/new car images/urbania img-*.jpeg` — Force Urbania exterior and cabin. The Urbania now has a full photo set.
+- `source-files/original-images/vehicles/urbania-img-*.jpeg` — Force Urbania exterior and cabin. The Urbania now has a full photo set.
 
 ## AI-generated images
 
 Generated server-side with the OpenAI Image API (`npm run images:generate`; config in `config/image-generation.mjs`,
-prompts and placements in `config/image-jobs.mjs`). Originals are kept in `assets-src/ai/` (outside `public/`);
-optimised WebP versions are in `public/media/`. The routing log is `assets-src/ai/generation-log.json`.
+prompts and placements in `config/image-jobs.mjs`). Originals are kept in `source-files/original-images/ai/` (outside `public/`);
+optimised WebP versions are in `public/assets/`. The routing log is `source-files/original-images/ai/generation-log.json`.
 
-| Image | Model · quality · size | Placement |
-| --- | --- | --- |
-| ai-hero-coast-road | sunburst · high · 1536×1024 | Homepage hero, About hero, 404 |
-| ai-airport-transfer | sunburst · high · 1536×1024 | Airport service tile, banner, detail, Services hero |
-| ai-corporate-travel | sunburst · high · 1536×1024 | Corporate service tile and detail |
-| ai-chauffeur-family | sunburst · high · 1024×1536 | Homepage “how it works”, About collage |
-| ai-outstation-highway | flare · high · 1536×1024 | Outstation service tile and detail |
-| ai-temple-architecture | flare · high · 1536×1024 | Temple Tours (labelled “Illustration”; not a specific temple) |
-| ai-fortuner-representative | flare · medium · 1024×1024 | Fortuner card/detail (labelled “Representative image”) |
+| Image                      | Model · quality · size      | Placement                                                     |
+| -------------------------- | --------------------------- | ------------------------------------------------------------- |
+| ai-hero-coast-road         | sunburst · high · 1536×1024 | Homepage hero, About hero, 404                                |
+| ai-airport-transfer        | sunburst · high · 1536×1024 | Airport service tile, banner, detail, Services hero           |
+| ai-corporate-travel        | sunburst · high · 1536×1024 | Corporate service tile and detail                             |
+| ai-chauffeur-family        | sunburst · high · 1024×1536 | Homepage “how it works”, About collage                        |
+| ai-outstation-highway      | flare · high · 1536×1024    | Outstation service tile and detail                            |
+| ai-temple-architecture     | flare · high · 1536×1024    | Temple Tours (labelled “Illustration”; not a specific temple) |
+| ai-fortuner-representative | flare · medium · 1024×1024  | Fortuner card/detail (labelled “Representative image”)        |
 
 No vehicle shown in a generated image is the client’s vehicle, and generated scenes are not presented as completed
 customer trips. No video was generated.
+
+## Stage 1 organization — 2 November 2026
+
+77 original image masters were moved without changing their bytes. Destination originals are in `source-files/original-images/editorial/`. Public derivatives use `assets/brand`, `assets/vehicles`, `assets/editorial` and `assets/illustrations`. Historical unused and byte-identical derivatives are archived outside public in `source-files/unused-renditions/`. The favicon set and 1200×630 social image derive from the complete supplied logo, fitted proportionally without inventing a new mark. No external image generation or final compression pass ran during this stage.

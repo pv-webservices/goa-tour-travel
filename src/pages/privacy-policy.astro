@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { business } from '../data/site';
+---
+
+<Layout
+  title="Privacy Policy — Website & WhatsApp Enquiries"
+  description="How Fatima Tour and Travel’s website prepares WhatsApp enquiries, opens phone calls and handles the information you choose to share."
+>
+  <PageHero
+    title="Privacy Policy"
+    eyebrow="Your information"
+    text="How enquiries work on this website."
+    image="goa-coast"
+  />
+  <section class="section">
+    <div class="container privacy-copy">
+      <p>Updated 2 November 2026. This notice describes enquiries made through {business.name}’s website.</p>
+      <h2>Information you choose to provide</h2>
+      <p>
+        The trip enquiry form asks for your name, phone number, service, pickup location and message. You may
+        also provide an email address, vehicle preference, travel date, destination and passenger count.
+        Optional information can be left blank. Please avoid sharing identity documents, payment details or
+        other sensitive information in this form.
+      </p>
+      <h2>WhatsApp enquiries</h2>
+      <p>
+        Your browser uses the entered details to create a prefilled WhatsApp message, including the source
+        page address without query parameters. The website form does not submit enquiries to an email service
+        or an enquiry database. Opening WhatsApp does not send the message or confirm a booking: you review
+        and send it yourself. When you open the link, WhatsApp receives the prefilled text as part of the
+        link, even before you send it.
+      </p>
+      <p>
+        WhatsApp handles the handoff and subsequent conversation under its own{' '}
+        <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">
+          privacy policy
+        </a>
+        . Information you send is used to respond to your travel enquiry and discuss arrangements. Contact us
+        about questions concerning the conversation or information you have shared.
+      </p>
+      <h2>Phone and email contact</h2>
+      <p>
+        Phone links open your device’s calling functionality. Calls are initiated by you. Our public email,{' '}
+        <a href={`mailto:${business.email}`}>{business.email}</a>, is a separate contact option; the website’s
+        enquiry forms do not send automatic emails.
+      </p>
+      <h2>Browser storage and hosting</h2>
+      <p>
+        The website uses a session storage flag to remember whether its introductory animation has appeared in
+        the current browser tab. The enquiry form does not deliberately save its fields in browser storage.
+        Your browser or device may retain form values or history. The website is hosted on Vercel, which may
+        process technical request information such as IP address and browser details to serve and protect the
+        site. See{' '}
+        <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">
+          Vercel’s privacy policy
+        </a>
+        . No enquiry details are deliberately sent to analytics by the website code.
+      </p>
+      <h2>Questions about your information</h2>
+      <p>
+        Contact {business.name} at <a href={`tel:${business.phone}`}>{business.displayPhone}</a> or{' '}
+        <a href={`mailto:${business.email}`}>{business.email}</a> with questions or requests about information
+        you have shared. Booking terms and any further use of information should be confirmed directly with
+        the business.
+      </p>
+    </div>
+  </section>
+</Layout>
+<style>
+  .privacy-copy {
+    max-width: 820px;
+  }
+  .privacy-copy h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  .privacy-copy p {
+    margin-bottom: 1rem;
+  }
+  .privacy-copy a {
+    text-decoration: underline;
+  }
+</style>

@@ -8,7 +8,6 @@ import SectionTitle from '../../components/SectionTitle.astro';
 import VehicleCard from '../../components/VehicleCard.astro';
 import FAQList from '../../components/FAQList.astro';
 import { services, vehicles, whatsapp, business, faqs, serviceImageAlt } from '../../data/site';
-import images from '../../data/images.json';
 export function getStaticPaths() {
   return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
 }
@@ -29,8 +28,7 @@ const suggested =
 
 <Layout
   title={`${s.name} in Goa`}
-  description={`${s.description} Request a ${s.name.toLowerCase()} quote from Fatima Tour and Travel with your route, dates and group requirements.`}
-  image={images[s.image as keyof typeof images].src}
+  description={`${s.name} in Goa with Fatima Tour and Travel. Ask about driver-included options, dates, pickup points and a quote for your journey.`}
 >
   <PageHero
     title={s.name}
@@ -44,7 +42,11 @@ const suggested =
     <div class="container detail-grid">
       <div class="detail-main">
         <figure class="detail-photo">
-          <Photo name={s.image} alt={serviceImageAlt(s)} sizes="(max-width: 1000px) 100vw, 60vw" />
+          <Photo
+            name={s.image}
+            alt={serviceImageAlt(s)}
+            sizes="(max-width: 900px) 92vw, (max-width: 1100px) 46vw, 58vw"
+          />
           {s.kind === 'scene' && <figcaption class="photo-note">Illustrative scene.</figcaption>}
         </figure>
         <div class="detail-body">

@@ -6,6 +6,8 @@ interface Props {
   class?: string;
   sizes?: string;
   eager?: boolean;
+  /** fetchpriority="high"; defaults to `eager`. Use only for the likely LCP image. */
+  priority?: boolean;
   /** CSS object-position override for this placement */
   position?: string;
 }
@@ -15,6 +17,7 @@ const {
   class: className,
   sizes = '(max-width: 640px) 100vw, 50vw',
   eager = false,
+  priority = eager,
   position,
 } = Astro.props;
 const data = images[name as keyof typeof images];
@@ -35,6 +38,6 @@ const objectPosition = position || focal[name];
   style={objectPosition ? `object-position:${objectPosition}` : undefined}
   sizes={sizes}
   loading={eager ? 'eager' : 'lazy'}
-  fetchpriority={eager ? 'high' : 'auto'}
+  fetchpriority={priority ? 'high' : 'auto'}
   decoding="async"
 />

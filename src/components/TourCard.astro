@@ -31,7 +31,7 @@ const { tour: t } = Astro.props;
     <div class="tour-bottom">
       <p class="price-note">{t.price ? 'Confirm price basis when enquiring' : 'Price on enquiry'}</p>
       <div class="tour-actions">
-        <a class="button small" href={`/tour-packages/${t.slug}/`} aria-label={`View ${t.name} details`}>
+        <a class="button small" href={`/tour-packages/${t.slug}/`} aria-label={`View Details: ${t.name}`}>
           <span class="button-label">View Details</span>
           <span class="button-icon">
             <Icon name="arrow" size={16} />
@@ -41,7 +41,7 @@ const { tour: t } = Astro.props;
           class="icon-button whatsapp"
           href={whatsapp(`the ${t.name} package`)}
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           aria-label={`Enquire about ${t.name} on WhatsApp`}
         >
           <Icon name="whatsapp" size={19} />
