@@ -164,6 +164,12 @@ dd {
 .section {
   padding-block: var(--section);
 }
+/* Defer style, layout and paint of below-the-fold sections until they near the viewport.
+   `auto` remembers each section's real height once rendered, avoiding scroll jumps. */
+main > section:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
 .skip-link {
   position: fixed;
   left: 16px;
@@ -891,6 +897,10 @@ input[type='date']::-webkit-calendar-picker-indicator {
     transform: none;
     visibility: visible;
     box-shadow: var(--shadow-lg);
+    /* Become visible (and focusable) at once on open; closing still waits for the slide-out. */
+    transition:
+      transform 0.45s var(--ease),
+      visibility 0s;
   }
   .header-actions {
     margin-left: auto;

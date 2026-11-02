@@ -5,9 +5,12 @@ const header = document.querySelector<HTMLElement>('[data-header]');
 const desktopNav = matchMedia('(min-width: 1101px)');
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 
+// Runs after the next frame has rendered, so layout reads never force a synchronous reflow during startup.
+const afterPaint = (callback: () => void) => requestAnimationFrame(() => setTimeout(callback, 0));
+
 // Header: transparent over the hero, solid once the page scrolls.
 const setHeaderState = () => header?.classList.toggle('is-solid', scrollY > 24);
-setHeaderState();
+afterPaint(setHeaderState);
 addEventListener('scroll', setHeaderState, { passive: true });
 
 // Mobile drawer
@@ -21,6 +24,22 @@ menu?.addEventListener('click', () => {
   menu.setAttribute('aria-expanded', String(open));
   menu.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
   document.body.classList.toggle('menu-open', open);
+  // The drawer precedes the toggle in DOM order, so move focus into it explicitly.
+  if (open) requestAnimationFrame(() => navFocusables()[0]?.focus());
+});
+// Keep keyboard focus cycling through drawer → header actions → toggle → drawer while it is open.
+const navFocusables = () =>
+  [...(nav?.querySelectorAll<HTMLElement>('a[href], button') ?? [])].filter((el) => el.offsetParent !== null);
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Tab' || menu?.getAttribute('aria-expanded') !== 'true') return;
+  const first = navFocusables()[0];
+  if (!event.shiftKey && document.activeElement === menu) {
+    event.preventDefault();
+    first?.focus();
+  } else if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    menu?.focus();
+  }
 });
 desktopNav.addEventListener('change', (event) => {
   if (event.matches) closeMenu();
@@ -75,6 +94,37 @@ if (!reduced.matches && 'IntersectionObserver' in window) {
   });
 }
 
+// Destination ribbon: user pause control (WCAG 2.2.2) and no off-screen animation work.
+document.querySelectorAll<HTMLElement>('[data-ribbon]').forEach((ribbon) => {
+  const toggle = ribbon.querySelector<HTMLButtonElement>('.ribbon-toggle');
+  toggle?.addEventListener('click', () => {
+    const paused = toggle.getAttribute('aria-pressed') !== 'true';
+    // A toggle button keeps one name; aria-pressed conveys the paused state.
+    toggle.setAttribute('aria-pressed', String(paused));
+    ribbon.classList.toggle('is-paused', paused);
+  });
+  if ('IntersectionObserver' in window)
+    new IntersectionObserver(([entry]) =>
+      ribbon.classList.toggle('is-offscreen', !entry.isIntersecting),
+    ).observe(ribbon);
+});
+
+// Video posters load only as the player nears the viewport (a poster attribute is fetched immediately).
+const posters = [...document.querySelectorAll<HTMLVideoElement>('video[data-poster]')];
+const setPoster = (video: HTMLVideoElement) => (video.poster = video.dataset.poster!);
+if ('IntersectionObserver' in window) {
+  const posterObserver = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        setPoster(entry.target as HTMLVideoElement);
+        posterObserver.unobserve(entry.target);
+      }),
+    { rootMargin: '600px 0px' },
+  );
+  posters.forEach((video) => posterObserver.observe(video));
+} else posters.forEach(setPoster);
+
 // Horizontal carousels
 document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((carousel) => {
   const track = carousel.querySelector<HTMLElement>('[data-carousel-track]')!;
@@ -90,7 +140,7 @@ document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((carousel) => 
   next?.addEventListener('click', () => track.scrollBy({ left: step() + 20, behavior }));
   track.addEventListener('scroll', update, { passive: true });
   addEventListener('resize', update);
-  update();
+  afterPaint(update);
 });
 
 // Category filters (vehicles, gallery)
@@ -171,23 +221,65 @@ document
   .querySelectorAll<HTMLInputElement>('input[data-min-today]')
   .forEach((input) => (input.min = todayISO));
 
-// Contact enquiry → reviewed WhatsApp draft
+// Contact enquiry → WhatsApp handoff; no delivery or booking confirmation.
 const form = document.querySelector<HTMLFormElement>('#enquiry-form');
 if (form) {
-  form
-    .querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[required], textarea[required]')
-    .forEach((field) => {
-      field.addEventListener('input', () => {
-        const digits = field.value.replace(/\D/g, '');
-        field.setCustomValidity(
-          !field.value.trim()
-            ? 'Please complete this field.'
-            : field.name === 'phone' && (digits.length < 7 || digits.length > 15)
-              ? 'Enter a mobile number with 7 to 15 digits.'
-              : '',
-        );
-      });
+  const fields = [
+    ...form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+      'input, select, textarea',
+    ),
+  ];
+  const preview = form.querySelector<HTMLElement>('#enquiry-preview')!;
+  const status = form.querySelector<HTMLElement>('[data-enquiry-status]')!;
+  const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+  let busy = false;
+  function validate(field: (typeof fields)[number], show = false) {
+    const label =
+      field.closest('label')?.querySelector('.field-label')?.textContent?.replace('Optional', '').trim() ||
+      field.name;
+    const value = field.value.trim();
+    const digits = value.replace(/\D/g, '');
+    field.setCustomValidity('');
+    if (field.required && !value) field.setCustomValidity(`Please enter ${label.toLowerCase()}.`);
+    else if (
+      field.name === 'phone' &&
+      value &&
+      (!/^\+?[0-9 ()-]+$/.test(value) || digits.length < 7 || digits.length > 15)
+    )
+      field.setCustomValidity('Enter a phone number with 7 to 15 digits and an optional leading +.');
+    else if (
+      (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) &&
+      value &&
+      field.minLength > 0 &&
+      value.length < field.minLength
+    )
+      field.setCustomValidity(
+        `Please enter at least ${field.minLength} characters for ${label.toLowerCase()}.`,
+      );
+    const valid = field.validity.valid;
+    if (show || field.hasAttribute('aria-invalid')) {
+      field.setAttribute('aria-invalid', String(!valid));
+      const error = document.getElementById(`${field.id}-error`)!;
+      error.textContent = valid ? '' : field.validationMessage;
+      error.hidden = valid;
+    }
+    return valid;
+  }
+  fields.forEach((field) => {
+    field.id = `enquiry-${field.name}`;
+    const error = document.createElement('span');
+    error.id = `${field.id}-error`;
+    error.className = 'field-error';
+    error.hidden = true;
+    field.setAttribute('aria-describedby', error.id);
+    field.after(error);
+    field.addEventListener('input', () => {
+      validate(field);
+      preview.hidden = true;
+      status.textContent = '';
     });
+    field.addEventListener('blur', () => validate(field, true));
+  });
   const query = new URLSearchParams(location.search);
   ['service', 'vehicle'].forEach((key) => {
     const el = form.elements.namedItem(key) as HTMLSelectElement;
@@ -202,9 +294,15 @@ if (form) {
   }
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    if (!form.reportValidity()) return;
+    if (busy) return;
+    const invalid = fields.filter((field) => !validate(field, true));
+    if (invalid.length) {
+      status.textContent = 'Please correct the highlighted fields.';
+      invalid[0].focus();
+      return;
+    }
     const data = new FormData(form);
-    const fields = [
+    const messageFields = [
       ['name', 'Name'],
       ['phone', 'Mobile'],
       ['email', 'Email'],
@@ -217,17 +315,56 @@ if (form) {
       ['message', 'Message'],
     ];
     const message =
-      `Hello ${form.dataset.business}, I would like to enquire about a trip.\n\n` +
-      fields
+      `New Website Enquiry — ${form.dataset.business}\n\n` +
+      messageFields
         .filter(([key]) => String(data.get(key) || '').trim())
         .map(([key, label]) => `${label}: ${String(data.get(key)).trim()}`)
-        .join('\n');
+        .join('\n') +
+      `\nSource Page: ${location.origin}${location.pathname}`;
     const href = `https://wa.me/${form.dataset.whatsapp}?text=${encodeURIComponent(message)}`;
-    const preview = document.querySelector<HTMLElement>('#enquiry-preview')!;
     const link = preview.querySelector<HTMLAnchorElement>('a')!;
     link.href = href;
     preview.querySelector('pre')!.textContent = message;
     preview.hidden = false;
     preview.focus();
+    if (!navigator.onLine) {
+      status.textContent =
+        'Your device appears to be offline. Your draft is ready to copy; reconnect before opening WhatsApp.';
+      return;
+    }
+    busy = true;
+    submit.disabled = true;
+    try {
+      window.open(href, '_blank', 'noopener,noreferrer');
+      status.textContent =
+        'Review and send the draft in WhatsApp. If it did not open, use the link or copy the message below.';
+    } catch {
+      status.textContent =
+        'WhatsApp could not be opened by this browser. Use the link below, copy your draft or call us.';
+    } finally {
+      window.setTimeout(() => {
+        busy = false;
+        submit.disabled = false;
+      }, 1200);
+    }
   });
+  form.querySelector('[data-copy-enquiry]')?.addEventListener('click', async () => {
+    const text = preview.querySelector('pre')!.textContent || '';
+    const copyStatus = form.querySelector<HTMLElement>('[data-copy-status]')!;
+    try {
+      await navigator.clipboard.writeText(text);
+      copyStatus.textContent = 'Enquiry message copied. Paste it into your WhatsApp conversation.';
+    } catch {
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(preview.querySelector('pre')!);
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+      copyStatus.textContent =
+        'Copy is unavailable. The draft is selected; copy it manually or use the WhatsApp link.';
+    }
+  });
+  // Keep personal fields disabled until the handler exists, including when JS fails to load.
+  form.noValidate = true;
+  form.querySelector<HTMLFieldSetElement>('[data-enquiry-fields]')!.disabled = false;
 }

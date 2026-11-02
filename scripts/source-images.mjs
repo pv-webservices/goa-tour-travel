@@ -49,6 +49,7 @@ const photos = [
     'Palolem Beach, Goa',
   ],
 ];
+await fs.mkdir('source-files/original-images/editorial', { recursive: true });
 for (const [name, url, author, caption] of photos) {
   try {
     const html = await (await fetch(url)).text();
@@ -61,15 +62,18 @@ for (const [name, url, author, caption] of photos) {
     imageUrl.searchParams.set('fm', 'jpg');
     const result = await fetch(imageUrl);
     if (!result.ok) throw new Error(result.status);
-    await fs.writeFile(`public/images/${name}.jpg`, Buffer.from(await result.arrayBuffer()));
+    await fs.writeFile(
+      `source-files/original-images/editorial/${name}.jpg`,
+      Buffer.from(await result.arrayBuffer()),
+    );
     console.log(name, author, caption, imageUrl.toString());
   } catch (e) {
     console.error(name, e.message);
   }
 }
 await fs.writeFile(
-  'ASSET-SOURCES.md',
-  '# Asset sources\n\nOriginal logo, vehicle photographs and video: client supplied in public/. Photographs are used without making fleet ownership or availability claims.\n\nDestination photographs downloaded locally under the [Unsplash License](https://unsplash.com/license):\n\n' +
+  'source-files/original-images/editorial/sources.md',
+  '# Destination image sources\n\nDestination originals are stored in source-files/original-images/editorial/. Client image provenance is maintained separately in ASSET-SOURCES.md.\n\nDestination photographs downloaded locally under the [Unsplash License](https://unsplash.com/license):\n\n' +
     photos
       .map(([name, url, author, caption]) => `- ${name}: ${caption}. Photo by ${author}. ${url}`)
       .join('\n'),

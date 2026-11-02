@@ -18,7 +18,7 @@ const iconName = icon || (isWhatsApp ? 'whatsapp' : 'arrow');
   class:list={['button', variant, className]}
   aria-label={label}
   target={isWhatsApp ? '_blank' : undefined}
-  rel={isWhatsApp ? 'noopener' : undefined}
+  rel={isWhatsApp ? 'noopener noreferrer' : undefined}
 >
   <span class="button-label">
     <slot />

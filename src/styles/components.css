@@ -63,6 +63,9 @@
   color: rgba(255, 255, 255, 0.65);
 }
 .breadcrumbs a {
+  /* A 24px+ pointer target (WCAG 2.5.8) without moving the text: padding offset by negative margin. */
+  padding-block: 4px;
+  margin-block: -4px;
   color: rgba(255, 255, 255, 0.85);
   transition: color 0.2s;
 }
@@ -554,6 +557,34 @@ details[open] .faq-toggle::after {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
   margin-top: 26px;
+}
+.contact-form fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.field-error {
+  color: #a22c23;
+  font-size: var(--fs-sm);
+}
+.field [aria-invalid='true'] {
+  border-color: #a22c23;
+}
+.form-note a {
+  text-decoration: underline;
+}
+.enquiry-preview .button {
+  margin: 0.5rem 0.5rem 0.5rem 0;
 }
 .field {
   display: grid;

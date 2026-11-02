@@ -7,7 +7,6 @@ import Icon from '../../components/Icon.astro';
 import TourCard from '../../components/TourCard.astro';
 import SectionTitle from '../../components/SectionTitle.astro';
 import { tours, whatsapp, business } from '../../data/site';
-import images from '../../data/images.json';
 export function getStaticPaths() {
   return tours.map((tour) => ({ params: { slug: tour.slug }, props: { tour } }));
 }
@@ -24,7 +23,6 @@ const contactService =
 <Layout
   title={`${t.name} — Goa Travel Package`}
   description={`Explore ${t.name} with Fatima Tour and Travel. View trip highlights and request a quote for your group.`}
-  image={images[t.image as keyof typeof images].src}
 >
   <PageHero
     title={t.name}
@@ -38,7 +36,7 @@ const contactService =
     <div class="container detail-grid">
       <div class="detail-main">
         <figure class="detail-photo">
-          <Photo name={t.image} alt={t.alt} sizes="(max-width: 1000px) 100vw, 60vw" />
+          <Photo name={t.image} alt={t.alt} sizes="(max-width: 900px) 92vw, (max-width: 1100px) 46vw, 58vw" />
           <figcaption class="photo-note">
             {t.slug === 'temple-tours'
               ? 'Illustration of Goan temple architecture; not a photograph of the proposed temples.'

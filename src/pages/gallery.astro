@@ -20,15 +20,15 @@ const entries = [
   { name: 'goa-beach', caption: 'Quepem coastline · South Goa', category: 'Goa' },
   { name: 'goa-sunset', caption: 'Golden hour · Goa', category: 'Goa' },
   { name: 'dudhsagar', caption: 'Dudhsagar Waterfall · Goa', category: 'Waterfall' },
-  { name: 'Toyota Innova Hycross img-5.jpeg', caption: 'Innova Hycross · Interior', category: 'Interiors' },
-  { name: 'Toyota Innova Hycross img-7.jpeg', caption: 'Innova Hycross · Cabin', category: 'Interiors' },
-  { name: 'swift dezire img-2.jpeg', caption: 'Dzire · Rear seats', category: 'Interiors' },
-  { name: 'Maruti Ertiga img-6.jpeg', caption: 'Ertiga · Interior', category: 'Interiors' },
-  { name: 'urbania img-6.jpeg', caption: 'Force Urbania · Cabin', category: 'Interiors' },
-  { name: 'tata winger img-5.jpeg', caption: 'Tata Winger · Interior', category: 'Interiors' },
-  { name: 'tata winger img-6.jpeg', caption: 'Tata Winger · Cabin', category: 'Interiors' },
-  { name: 'Bharat benz img-4.jpeg', caption: 'BharatBenz Bus · Interior', category: 'Interiors' },
-  { name: 'Bharat benz img-7.jpeg', caption: 'BharatBenz Bus · Seating', category: 'Interiors' },
+  { name: 'toyota-innova-hycross-img-5', caption: 'Innova Hycross · Interior', category: 'Interiors' },
+  { name: 'toyota-innova-hycross-img-7', caption: 'Innova Hycross · Cabin', category: 'Interiors' },
+  { name: 'swift-dezire-img-2', caption: 'Dzire · Rear seats', category: 'Interiors' },
+  { name: 'maruti-ertiga-img-6', caption: 'Ertiga · Interior', category: 'Interiors' },
+  { name: 'urbania-img-6', caption: 'Force Urbania · Cabin', category: 'Interiors' },
+  { name: 'tata-winger-img-5', caption: 'Tata Winger · Interior', category: 'Interiors' },
+  { name: 'tata-winger-img-6', caption: 'Tata Winger · Cabin', category: 'Interiors' },
+  { name: 'bharat-benz-img-4', caption: 'BharatBenz Bus · Interior', category: 'Interiors' },
+  { name: 'bharat-benz-img-7', caption: 'BharatBenz Bus · Seating', category: 'Interiors' },
 ];
 ---
 
@@ -81,11 +81,7 @@ const entries = [
             data-caption={e.caption}
             aria-label={`View ${e.caption}`}
           >
-            <Photo
-              name={e.name}
-              alt={e.caption}
-              sizes="(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 25vw"
-            />
+            <Photo name={e.name} alt="" sizes="(max-width: 640px) 50vw, (max-width: 1100px) 45vw, 25vw" />
             <span class="gallery-caption">
               {e.caption}
               <Icon name="plus" size={18} />
@@ -112,12 +108,12 @@ const entries = [
         <video
           controls
           preload="none"
-          poster="/media/fleet-winger-960.webp"
+          data-poster="/assets/vehicles/fleet-winger-960.webp"
           aria-label="Client-supplied Tata Winger vehicle video"
         >
-          <source src="/tata%20winger%20video.mp4" type="video/mp4" />
+          <source src="/assets/vehicles/tata-winger-video.mp4" type="video/mp4" />
           <p>
-            <a href="/tata%20winger%20video.mp4">Download the Winger video</a>
+            <a href="/assets/vehicles/tata-winger-video.mp4">Download the Winger video</a>
           </p>
         </video>
       </div>

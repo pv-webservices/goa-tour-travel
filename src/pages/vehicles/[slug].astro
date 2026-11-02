@@ -19,7 +19,6 @@ const others = vehicles.filter((other) => other.slug !== v.slug);
 <Layout
   title={`${v.name} Booking in Goa`}
   description={`Enquire about ${v.name} with a driver in Goa. Explore ${v.short} travel options, photos and request a quote for your dates and route.`}
-  image={images[`fleet-${v.slug}` as keyof typeof images].src}
 >
   <PageHero
     title={v.name}
@@ -37,7 +36,7 @@ const others = vehicles.filter((other) => other.slug !== v.slug);
             <Photo
               name={`fleet-${v.slug}`}
               alt={v.representative ? `Representative image of a white seven-seater SUV` : v.name}
-              sizes="(max-width: 1000px) 100vw, 60vw"
+              sizes="(max-width: 900px) 92vw, (max-width: 1100px) 46vw, 58vw"
             />
             {v.representative && (
               <figcaption class="photo-note">
@@ -57,7 +56,7 @@ const others = vehicles.filter((other) => other.slug !== v.slug);
                   <Photo
                     name={file}
                     alt={`${v.name} photograph ${i + 1}`}
-                    sizes="(max-width: 640px) 25vw, 12vw"
+                    sizes="(max-width: 640px) 20vw, (max-width: 900px) 14vw, 110px"
                   />
                 </button>
               ))}
@@ -100,13 +99,13 @@ const others = vehicles.filter((other) => other.slug !== v.slug);
                 <video
                   controls
                   preload="none"
-                  poster="/media/fleet-winger-960.webp"
+                  data-poster="/assets/vehicles/fleet-winger-960.webp"
                   aria-label="Client-supplied Tata Winger vehicle video"
                 >
-                  <source src="/tata%20winger%20video.mp4" type="video/mp4" />
+                  <source src="/assets/vehicles/tata-winger-video.mp4" type="video/mp4" />
                   <p>
                     Your browser cannot play this video.{' '}
-                    <a href="/tata%20winger%20video.mp4">Download the Winger video</a>.
+                    <a href="/assets/vehicles/tata-winger-video.mp4">Download the Winger video</a>.
                   </p>
                 </video>
               </div>

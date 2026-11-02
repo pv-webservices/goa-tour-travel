@@ -255,6 +255,7 @@
 
 /* ───────────────────────── Destination ribbon ───────────────────────── */
 .ribbon {
+  position: relative;
   overflow: hidden;
   background: var(--night);
   color: rgba(255, 255, 255, 0.82);
@@ -266,8 +267,40 @@
   width: max-content;
   animation: marquee 48s linear infinite;
 }
-.ribbon:hover .ribbon-track {
+.ribbon:hover .ribbon-track,
+.ribbon:focus-within .ribbon-track,
+.ribbon.is-paused .ribbon-track,
+.ribbon.is-offscreen .ribbon-track {
   animation-play-state: paused;
+}
+/* WCAG 2.2.2: a persistent control to stop the auto-scrolling ribbon. */
+.ribbon-toggle {
+  position: absolute;
+  inset-block: 0;
+  right: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  color: var(--gold);
+  background: linear-gradient(90deg, rgba(11, 15, 18, 0), var(--night) 35%);
+  border: 0;
+  cursor: pointer;
+}
+.ribbon-toggle:focus-visible {
+  outline-offset: -4px;
+}
+.ribbon-toggle svg:last-child,
+.ribbon.is-paused .ribbon-toggle svg:first-child {
+  display: none;
+}
+.ribbon.is-paused .ribbon-toggle svg:last-child {
+  display: block;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ribbon-toggle {
+    display: none;
+  }
 }
 .ribbon ul {
   display: flex;

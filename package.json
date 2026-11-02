@@ -10,7 +10,17 @@
     "check": "astro check",
     "test": "node scripts/qa.mjs",
     "images:generate": "node --env-file-if-exists=.env scripts/generate-images.mjs",
-    "images:optimize": "node scripts/optimize-images.mjs"
+    "images:optimize": "node scripts/optimize-images.mjs",
+    "audit": "node scripts/audit.mjs",
+    "assets:brand": "node scripts/brand-assets.mjs",
+    "test:enquiry": "node scripts/enquiry-qa.mjs",
+    "test:http": "node scripts/http-qa.mjs",
+    "assets:clean": "node scripts/clean-assets.mjs",
+    "serve:dist": "node scripts/serve-dist.mjs dist",
+    "test:stage2": "node scripts/stage2-qa.mjs",
+    "test:visual": "node scripts/visual-diff.mjs",
+    "perf:lighthouse": "node scripts/lighthouse.mjs",
+    "images:recompress": "node scripts/recompress-images.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.12",

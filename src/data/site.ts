@@ -32,7 +32,8 @@ export interface Vehicle {
   description: string;
   uses: string[];
 }
-const photos = (prefix: string, numbers: number[]) => numbers.map((n) => `${prefix} img-${n}.jpeg`);
+const photos = (prefix: string, numbers: number[]) =>
+  numbers.map((n) => `${prefix.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-img-${n}`);
 export const vehicles: Vehicle[] = [
   {
     slug: 'innova-crysta',
