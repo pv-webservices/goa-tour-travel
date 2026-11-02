@@ -18,8 +18,8 @@ export const imageConfig = {
     portrait: '1024x1536',
   },
   outputFormat: 'png',
-  // Generated originals stay outside public/; optimized WebP versions are written to public/media.
-  outputDir: 'assets-src/ai',
+  // Generated originals stay outside public/; WebP versions are written to public/assets.
+  outputDir: 'source-files/original-images/ai',
   timeoutMs: 240_000,
 };
 

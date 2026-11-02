@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
 import Photo from '../components/Photo.astro';
+import { business, whatsapp } from '../data/site';
 ---
 
 <Layout
@@ -13,14 +14,18 @@ import Photo from '../components/Photo.astro';
     <Photo name="ai-hero-coast-road" alt="" eager sizes="100vw" />
     <div class="container">
       <p class="eyebrow light">404 · A little detour</p>
-      <h1>
-        Let’s Get You Back on the <em>Scenic Route.</em>
-      </h1>
+      <h1>Page Not Found</h1>
       <p>We couldn’t find that page. There’s plenty more Goa to explore.</p>
       <div class="hero-actions">
         <Button href="/">Back to Home</Button>
         <Button href="/tour-packages/" variant="light">
           Explore Our Tours
+        </Button>
+        <Button href={whatsapp('finding a tour or travel service')} variant="whatsapp">
+          WhatsApp Us
+        </Button>
+        <Button href={`tel:${business.phone}`} variant="light" icon="phone">
+          Call Us
         </Button>
       </div>
     </div>

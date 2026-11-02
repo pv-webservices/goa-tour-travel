@@ -39,10 +39,10 @@ const pillars = [
         <Photo
           name="ai-chauffeur-family"
           alt="Illustrative scene of a driver welcoming a family to a white MPV in Goa"
-          sizes="(max-width: 900px) 70vw, 30vw"
+          sizes="(max-width: 900px) 74vw, 35vw"
         />
         <Photo
-          name="Toyota Crysta img-3.jpeg"
+          name="toyota-crysta-img-3"
           alt="Client-supplied Toyota Innova Crysta photograph"
           sizes="(max-width: 900px) 50vw, 22vw"
         />
@@ -125,7 +125,13 @@ const pillars = [
       />
     </div>
     <div class="carousel" data-carousel>
-      <div class="carousel-track" data-carousel-track tabindex="0" aria-label="Fleet, scroll horizontally">
+      <div
+        class="carousel-track"
+        data-carousel-track
+        tabindex="0"
+        role="region"
+        aria-label="Fleet, scroll horizontally"
+      >
         {vehicles.map((vehicle) => (
           <VehicleCard vehicle={vehicle} />
         ))}

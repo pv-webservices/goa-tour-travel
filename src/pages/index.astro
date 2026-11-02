@@ -98,7 +98,7 @@ const bento = [
       </div>
       <div class="hero-stack" aria-hidden="true">
         <figure class="stack-card stack-main">
-          <Photo name="Toyota Crysta img-1.jpeg" alt="" sizes="(max-width: 1100px) 1px, 26vw" />
+          <Photo name="toyota-crysta-img-1" alt="" sizes="(max-width: 1100px) 1px, 26vw" />
           <figcaption>
             <span>Innova Crysta</span> With driver
           </figcaption>
@@ -124,7 +124,16 @@ const bento = [
     </div>
   </section>
 
-  <div class="ribbon" aria-label="Places our Goa tours visit">
+  <div class="ribbon" role="group" aria-label="Places our Goa tours visit" data-ribbon>
+    <button
+      type="button"
+      class="ribbon-toggle"
+      aria-pressed="false"
+      aria-label="Pause scrolling destinations"
+    >
+      <Icon name="pause" size={14} />
+      <Icon name="play" size={14} />
+    </button>
     <div class="ribbon-track">
       {[0, 1].map((copy) => (
         <ul aria-hidden={copy === 1 ? 'true' : undefined}>
@@ -151,11 +160,7 @@ const bento = [
       <div class="bento">
         {bento.map((s, i) => (
           <a href={`/services/${s.slug}/`} class:list={['bento-tile', `bento-${i + 1}`]} data-reveal>
-            <Photo
-              name={s.image}
-              alt={serviceImageAlt(s)}
-              sizes={i === 0 ? '(max-width: 760px) 100vw, 50vw' : '(max-width: 760px) 100vw, 30vw'}
-            />
+            <Photo name={s.image} alt={serviceImageAlt(s)} sizes="(max-width: 900px) 92vw, 45vw" />
             <span class="bento-content">
               <span class="bento-icon">
                 <Icon name={s.icon} size={22} />
@@ -184,7 +189,13 @@ const bento = [
       />
     </div>
     <div class="carousel" data-carousel>
-      <div class="carousel-track" data-carousel-track tabindex="0" aria-label="Fleet, scroll horizontally">
+      <div
+        class="carousel-track"
+        data-carousel-track
+        tabindex="0"
+        role="region"
+        aria-label="Fleet, scroll horizontally"
+      >
         {vehicles.map((vehicle) => (
           <VehicleCard vehicle={vehicle} />
         ))}
@@ -347,13 +358,13 @@ const bento = [
         <video
           controls
           preload="none"
-          poster="/media/fleet-winger-960.webp"
+          data-poster="/assets/vehicles/fleet-winger-960.webp"
           aria-label="Client-supplied Tata Winger vehicle video"
         >
-          <source src="/tata%20winger%20video.mp4" type="video/mp4" />
+          <source src="/assets/vehicles/tata-winger-video.mp4" type="video/mp4" />
           <p>
             Your browser cannot play this video.{' '}
-            <a href="/tata%20winger%20video.mp4">Download the Winger video</a>.
+            <a href="/assets/vehicles/tata-winger-video.mp4">Download the Winger video</a>.
           </p>
         </video>
       </div>

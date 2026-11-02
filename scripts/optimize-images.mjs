@@ -2,9 +2,9 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 
-await fs.mkdir('public/media', { recursive: true });
+const originals = 'source-files/original-images';
 const manifest = {};
-async function optimize(key, input, crop) {
+async function optimize(key, input, crop, folder = 'vehicles') {
   let source = sharp(input).rotate();
   if (crop) {
     const m = await sharp(input).metadata();
@@ -30,46 +30,48 @@ async function optimize(key, input, crop) {
   ];
   const sources = [];
   for (const width of widths) {
-    const file = `/media/${id}-${width}.webp`;
+    const file = `/assets/${folder}/${id}-${width}.webp`;
+    await fs.mkdir(`public/assets/${folder}`, { recursive: true });
     await sharp(buffer)
       .resize({ width, withoutEnlargement: true })
       .webp({ quality: 80, effort: 5 })
       .toFile(`public${file}`);
     sources.push(`${file} ${width}w`);
   }
-  manifest[key] = {
-    src: `/media/${id}-${widths[Math.min(1, widths.length - 1)]}.webp`,
+  manifest[id] = {
+    src: `/assets/${folder}/${id}-${widths[Math.min(1, widths.length - 1)]}.webp`,
     srcset: sources.join(', '),
     width: m.width,
     height: m.height,
   };
 }
-for (const file of await fs.readdir('public'))
-  if (file.endsWith('.jpeg')) await optimize(file, `public/${file}`);
-for (const file of await fs.readdir('public/new car images'))
-  if (file.endsWith('.jpeg')) await optimize(file, `public/new car images/${file}`);
+for (const file of await fs.readdir(`${originals}/vehicles`))
+  if (file.endsWith('.jpeg') && !file.startsWith('misc-'))
+    await optimize(path.parse(file).name, `${originals}/vehicles/${file}`);
 // Server-generated AI scenes (see scripts/generate-images.mjs); originals stay outside public/.
-for (const file of await fs.readdir('assets-src/ai').catch(() => []))
-  if (file.endsWith('.png')) await optimize(path.parse(file).name, `assets-src/ai/${file}`);
-for (const file of await fs.readdir('public/images'))
-  if (file.endsWith('.jpg')) await optimize(path.parse(file).name, `public/images/${file}`);
+for (const file of await fs.readdir(`${originals}/ai`).catch(() => []))
+  if (file.endsWith('.png') && !file.includes('fortuner'))
+    await optimize(path.parse(file).name, `${originals}/ai/${file}`, undefined, 'illustrations');
+for (const file of await fs.readdir(`${originals}/editorial`))
+  if (file.endsWith('.jpg'))
+    await optimize(path.parse(file).name, `${originals}/editorial/${file}`, undefined, 'editorial');
 const fleet = {
-  'innova-crysta': ['Toyota Crysta img-3.jpeg', [0.1, 0.29, 0.69, 0.42]],
-  'innova-hycross': ['Toyota Innova Hycross img-4.jpeg', [0.16, 0.31, 0.65, 0.39]],
-  ertiga: ['Maruti Ertiga img-3.jpeg'],
-  dzire: ['new car images/swift dezire img-3.jpeg', [0, 0.32, 1, 0.56]],
-  'force-urbania': ['new car images/urbania img-3.jpeg'],
-  fortuner: ['../assets-src/ai/ai-fortuner-representative.png', [0, 0.12, 1, 0.82]],
-  glanza: ['Toyota Glanza img-4.jpeg'],
-  winger: ['tata winger img-3.jpeg'],
-  'tempo-traveller': ['force img-3.jpeg'],
-  'bharatbenz-bus': ['Bharat benz img-3.jpeg'],
+  'innova-crysta': ['vehicles/toyota-crysta-img-3.jpeg', [0.1, 0.29, 0.69, 0.42]],
+  'innova-hycross': ['vehicles/toyota-innova-hycross-img-4.jpeg', [0.16, 0.31, 0.65, 0.39]],
+  ertiga: ['vehicles/maruti-ertiga-img-3.jpeg'],
+  dzire: ['vehicles/swift-dezire-img-3.jpeg', [0, 0.32, 1, 0.56]],
+  'force-urbania': ['vehicles/urbania-img-3.jpeg'],
+  fortuner: ['ai/ai-fortuner-representative.png', [0, 0.12, 1, 0.82]],
+  glanza: ['vehicles/toyota-glanza-img-4.jpeg'],
+  winger: ['vehicles/tata-winger-img-3.jpeg'],
+  'tempo-traveller': ['vehicles/force-img-3.jpeg'],
+  'bharatbenz-bus': ['vehicles/bharat-benz-img-3.jpeg'],
 };
 for (const [slug, [file, crop]] of Object.entries(fleet))
-  await optimize(`fleet-${slug}`, `public/${file}`, crop);
+  await optimize(`fleet-${slug}`, `${originals}/${file}`, crop);
 // The supplied logo sits on a black box; derive a transparent version (black → alpha) for dark headers.
 async function transparentLogo() {
-  const { data, info } = await sharp('public/website logo.jpeg')
+  const { data, info } = await sharp(`${originals}/brand/website-logo.jpeg`)
     .rotate()
     .ensureAlpha()
     .raw()
@@ -88,11 +90,11 @@ async function transparentLogo() {
     await sharp(trimmed)
       .resize({ width })
       .webp({ quality: 90, alphaQuality: 100 })
-      .toFile(`public/media/logo-light-${width}.webp`);
-    sources.push(`/media/logo-light-${width}.webp ${width}w`);
+      .toFile(`public/assets/brand/logo-light-${width}.webp`);
+    sources.push(`/assets/brand/logo-light-${width}.webp ${width}w`);
   }
   manifest.logo = {
-    src: '/media/logo-light-640.webp',
+    src: '/assets/brand/logo-light-640.webp',
     srcset: sources.join(', '),
     width: m.width,
     height: m.height,
@@ -100,4 +102,5 @@ async function transparentLogo() {
 }
 await transparentLogo();
 await fs.writeFile('src/data/images.json', JSON.stringify(manifest, null, 2));
+await import('./clean-assets.mjs');
 console.log(`Optimized ${Object.keys(manifest).length} images with responsive WebP sources.`);
