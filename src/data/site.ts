@@ -213,8 +213,7 @@ export const tours: Tour[] = [
     description:
       'Go a little further along Goa’s northern coastline. Make space for Morjim, Mandrem, Ashwem and Arambol on your next beach-filled day.',
     stops: ['Morjim Beach', 'Mandrem Beach', 'Ashwem Beach', 'Arambol Beach'],
-    price: '₹3,500',
-    note: 'Ask us to confirm what the quoted amount covers, the price basis, vehicle and any additional charges before booking.',
+    note: 'Share your preferred stops to plan a suitable route. Access and activities depend on local conditions; pricing and timings are confirmed with your quote.',
   },
   {
     slug: 'dudhsagar-waterfall',
@@ -250,8 +249,8 @@ export const tours: Tour[] = [
 
 export const services = [
   {
-    slug: 'taxi-and-rental',
-    name: 'Taxi & Rental Services',
+    slug: 'taxi-services',
+    name: 'Taxi Services',
     label: 'Your day, your way',
     icon: 'car',
     image: 'fleet-innova-hycross',
@@ -260,11 +259,11 @@ export const services = [
       'A ride across town or a whole day of exploring. Enquire about a car with a driver for your plans in Goa.',
     details: [
       'Taxi pickup and drop',
-      'Rental vehicles with drivers',
+      'Driver-included vehicles',
       'Private sightseeing',
       'Individual and family journeys',
     ],
-    prompt: 'taxi and driver-included rental services',
+    prompt: 'driver-included taxi services',
     planning:
       'Share your pickup, destination and travel date. For day bookings, let us know your planned stops so we can discuss the most suitable duration.',
   },
@@ -373,10 +372,6 @@ export const faqs = [
     'Most journeys need a quote based on the vehicle, route, date and duration. Send us your plans for current pricing. Vehicle availability and specifications must be confirmed for your booking.',
   ],
   [
-    'What does the North Goa Extreme price cover?',
-    'The listed amount is ₹3,500. Please confirm the price basis, selected vehicle, inclusions and any additional charges with our team before booking.',
-  ],
-  [
     'Are fuel, tolls and entry tickets included?',
     'Inclusions are agreed with your quote. Do not assume that fuel, distance, tolls, parking, driver allowances, attraction tickets, cruises or other activities are included.',
   ],
@@ -437,4 +432,47 @@ export const facts = [
   [String(tours.length), 'Goa journeys', 'North, South, waterfall & temples'],
   ['4', 'Outstation cities', 'Mumbai, Bengaluru, Pune, Hyderabad'],
   ['8–24h', 'Booking durations', 'Driver-included day packages'],
+];
+
+export interface Testimonial {
+  name: string;
+  city: string;
+  rating: number;
+  trip: string;
+  quote: string;
+}
+
+export const testimonials: Testimonial[] = [
+  {
+    name: 'Monika',
+    city: 'Mumbai',
+    rating: 4,
+    trip: 'Airport pickup · Innova Hycross',
+    quote:
+      'I’ve used many taxi services in Goa, but Fatima Tours & Travels stands out. Their new Innova Hycross is a dream to travel in. They were waiting for us at the airport 10 minutes before our arrival. Reliable, honest, and very professional.',
+  },
+  {
+    name: 'Ravi Sharma',
+    city: 'Jaipur',
+    rating: 5,
+    trip: '3-day Goa tour · Innova Crysta',
+    quote:
+      'We booked an Innova Crysta for our 3-day North and South Goa tour. The car was spotless and the driver was extremely professional and knew all the hidden spots. From the Dolphin trip to the Basilica of Bom Jesus, everything was perfectly timed. Highly recommend Vaseem and his team!',
+  },
+  {
+    name: 'Tanya Sharma',
+    city: 'Delhi',
+    rating: 5,
+    trip: 'Corporate trip · BharatBenz bus',
+    quote:
+      'We hired the Bharat Benz 40-seater for a corporate trip from Pune to Goa. It is hard to find such a well-maintained luxury bus in Panjim. The seating was comfortable and the journey was very smooth. Fatima Tours & Travels made our logistics stress-free.',
+  },
+  {
+    name: 'Shivansh',
+    city: 'Mumbai',
+    rating: 5,
+    trip: 'Temple tour · Gokarna & Murdeshwar',
+    quote:
+      'I used Fatima Tours for a trip from Goa to Gokarna and Murdeshwar. The driver was very patient during the temple visits and drove very safely. The pricing was transparent and exactly what was quoted — no hidden charges. Truly a reliable service!',
+  },
 ];

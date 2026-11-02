@@ -1,0 +1,69 @@
+---
+import SectionTitle from './SectionTitle.astro';
+import Icon from './Icon.astro';
+import { testimonials } from '../data/site';
+
+const initials = (name: string) =>
+  name
+    .split(' ')
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
+const star = 'M12 2.8l2.8 5.7 6.3.9-4.55 4.43 1.07 6.27L12 17.13 6.38 20.1l1.07-6.27L2.9 9.4l6.3-.9L12 2.8Z';
+---
+
+<section class="section reviews-section" aria-label="Customer reviews">
+  <div class="container">
+    <SectionTitle
+      eyebrow="Happy travellers"
+      title="Stories From the Road"
+      text="Airport pickups, family tours, temple journeys and corporate groups — here is what travellers say after riding with us."
+      center
+    />
+  </div>
+  <div class="reviews" data-carousel>
+    <ul class="container reviews-track" data-carousel-track tabindex="0" aria-label="Reviews, scroll horizontally">
+      {testimonials.map((t) => (
+        <li class="review-card" data-reveal>
+          <figure>
+            <span class="review-mark" aria-hidden="true">“</span>
+            <p class="review-stars" role="img" aria-label={`Rated ${t.rating} out of 5`}>
+              {[1, 2, 3, 4, 5].map((n) => (
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" class:list={{ off: n > t.rating }}>
+                  <path d={star} />
+                </svg>
+              ))}
+            </p>
+            <blockquote>
+              <p>{t.quote}</p>
+            </blockquote>
+            <figcaption>
+              <span class="review-avatar" aria-hidden="true">{initials(t.name)}</span>
+              <span class="review-person">
+                <strong>{t.name}</strong>
+                <span>
+                  <Icon name="pin" size={13} /> {t.city}
+                </span>
+              </span>
+            </figcaption>
+            <p class="review-trip">{t.trip}</p>
+          </figure>
+        </li>
+      ))}
+    </ul>
+    <div class="container carousel-controls reviews-controls">
+      <p class="carousel-hint">
+        <Icon name="users" size={16} /> Swipe to read more reviews
+      </p>
+      <div class="carousel-buttons">
+        <button type="button" class="icon-button" data-carousel-prev aria-label="Previous reviews">
+          <Icon name="chevron-left" size={20} />
+        </button>
+        <button type="button" class="icon-button" data-carousel-next aria-label="Next reviews">
+          <Icon name="chevron-right" size={20} />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

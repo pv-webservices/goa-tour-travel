@@ -17,7 +17,7 @@ Source: executed Stage 1 generated-HTML audit, 2 November 2026. Initial source: 
 | /services/day-packages/             | Services            |     0 |             14 |           5 |
 | /services/group-transport/          | Services            |     0 |              9 |           5 |
 | /services/outstation-travel/        | Services            |     0 |             14 |           5 |
-| /services/taxi-and-rental/          | Services            |     0 |             14 |           5 |
+| /services/taxi-services/            | Services            |     0 |             14 |           5 |
 | /tour-packages/                     | Tour packages       |     0 |              9 |           5 |
 | /tour-packages/dudhsagar-waterfall/ | Tour packages       |     0 |              9 |           5 |
 | /tour-packages/north-goa-extreme/   | Tour packages       |     0 |              9 |           5 |

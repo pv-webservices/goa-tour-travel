@@ -80,6 +80,16 @@
       "source": "/our-services/",
       "destination": "/services/",
       "permanent": true
+    },
+    {
+      "source": "/services/taxi-and-rental",
+      "destination": "/services/taxi-services/",
+      "permanent": true
+    },
+    {
+      "source": "/services/taxi-and-rental/",
+      "destination": "/services/taxi-services/",
+      "permanent": true
     }
   ],
   "headers": [

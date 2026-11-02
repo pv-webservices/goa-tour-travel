@@ -75,7 +75,7 @@ This list is generated from the executed local SEO audit. Before requesting inde
 - https://fatimatourandtravels.com/services/day-packages/
 - https://fatimatourandtravels.com/services/group-transport/
 - https://fatimatourandtravels.com/services/outstation-travel/
-- https://fatimatourandtravels.com/services/taxi-and-rental/
+- https://fatimatourandtravels.com/services/taxi-services/
 
 ### Tour packages (7)
 

@@ -9,6 +9,7 @@ import TourCard from '../components/TourCard.astro';
 import ScenicBanner from '../components/ScenicBanner.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import TripPlanner from '../components/TripPlanner.astro';
+import Testimonials from '../components/Testimonials.astro';
 import FAQList from '../components/FAQList.astro';
 import {
   vehicles,
@@ -23,7 +24,7 @@ import {
 
 const quickLinks = [
   ['sun', 'Tour Packages', '/tour-packages/'],
-  ['car', 'Taxi & Rental', '/services/taxi-and-rental/'],
+  ['car', 'Taxi Services', '/services/taxi-services/'],
   ['plane', 'Airport Transfers', '/services/airport-transfers/'],
   ['route', 'Outstation Trips', '/services/outstation-travel/'],
 ];
@@ -49,7 +50,7 @@ const steps = [
   ['03', 'Make it your journey', 'Confirm the details with our team, then look forward to your time in Goa.'],
 ];
 const bento = [
-  'taxi-and-rental',
+  'taxi-services',
   'airport-transfers',
   'outstation-travel',
   'corporate-travel',
@@ -329,6 +330,8 @@ const bento = [
       </ul>
     </div>
   </section>
+
+  <Testimonials />
 
   <section class="section video-section">
     <div class="container video-grid">
